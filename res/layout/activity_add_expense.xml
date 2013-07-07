@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".AddExpense" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:text="Add an Expense" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="AMOUNT" />
+    <EditText
+        android:id="@+id/amt_val"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Amount"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="DATE" />
+    <EditText
+        android:id="@+id/amt_date"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date  MM/DD/YYYY"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="CATEGORY" />
+    <EditText
+        android:id="@+id/amt_cat"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Category"
+        android:layout_marginLeft="5dp" />
+    
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Add" />
+
+</LinearLayout>
