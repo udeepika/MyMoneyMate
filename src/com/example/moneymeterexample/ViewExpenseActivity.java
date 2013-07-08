@@ -17,37 +17,27 @@ email: udeepika@pdx.edu
 
 MyMoneyMate - An android application to keep a record of your expenses.
 ***************************************************************************************** */
-
 package com.example.moneymeterexample;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.app.ListActivity;
-
-
-
-
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
-
-
-
-
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 //import android.widget.TableLayout.LayoutParams;
@@ -60,18 +50,20 @@ import android.widget.Toast;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
-public class ViewExpenseActivity extends ListActivity {
+public class ViewExpenseActivity extends ListActivity implements OnClickListener{
 	
 	static final ArrayList<HashMap<String,String>> list = 
 		    new ArrayList<HashMap<String,String>>(); 
 	//DataBaseHelper db;
 	ListView lv;
 	TextView txt_id;
+	Button back_btn;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_expense);
-		//ListView lv = (ListView)findViewById(R.id.listview);
+		back_btn = (Button)findViewById(R.id.back_btn);
+		back_btn.setOnClickListener(this);
 		System.out.println("Fine till here ");
 		SimpleAdapter sd = new SimpleAdapter(this, list, R.layout.table_row, new String[]{"_id","date", "category", "amount"},
 		new int[] {R.id.ID_CELL , R.id.DATE_CELL,R.id.CATEGORY_CELL,R.id.AMOUNT_CELL}); 
@@ -127,7 +119,28 @@ public class ViewExpenseActivity extends ListActivity {
 		db.close();
 		
 		
-	}  
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		switch(arg0.getId()){
+		case (R.id.back_btn):
+			Intent addIntent = new Intent(ViewExpenseActivity.this,MainActivity.class);
+			startActivity(addIntent);
+			finish();
+			
+			break;
+		default:
+			break;
+				
+		}
 		
+	}  
+	
+	public void onDestroy() {
+        super.onDestroy();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }   	
 
 }

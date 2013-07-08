@@ -85,7 +85,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public ArrayList<ExpenseEntry> getExpenses(){
 		exList.clear();
 		SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " ORDER BY date ", null);
         if(cursor.getCount()!=0){
         	if (cursor.moveToFirst()) {
                 do {
