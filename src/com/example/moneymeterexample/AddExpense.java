@@ -17,7 +17,9 @@ email: udeepika@pdx.edu
 
 MyMoneyMate - An android application to keep a record of your expenses.
 ***************************************************************************************** */
+
 package com.example.moneymeterexample;
+
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -31,22 +33,31 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 public class AddExpense extends Activity implements OnClickListener{
 	
-	private Button addExpense_btn;
-	EditText amt,date,category;
+	private Button addExpense_btn,clear_button;
+	Button show_cal;
+	EditText amt,date,category,notes;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_expense);
 		
 		addExpense_btn = (Button) findViewById(R.id.add_btn);
+		clear_button = (Button) findViewById(R.id.clear_btn);
+		show_cal = (Button) findViewById(R.id.show_calendar);
 		addExpense_btn.setOnClickListener(this);
+		clear_button.setOnClickListener(this);
+		show_cal.setOnClickListener(this);
 		amt = (EditText) findViewById(R.id.amt_val);
 		date = (EditText) findViewById(R.id.amt_date);
 		category = (EditText) findViewById(R.id.amt_cat);
-	}
+		notes = (EditText) findViewById(R.id.notes_txt);
+			
+		//show_cal.setBackgroundResource(R.drawable.calendar);
+				}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,6 +88,12 @@ public class AddExpense extends Activity implements OnClickListener{
 				
 			}
 			break;
+		case R.id.clear_btn:
+				amt.setText("");
+				date.setText("");
+				category.setText("");
+				notes.setText("");
+				break;
 			default:
 				break;
 		}

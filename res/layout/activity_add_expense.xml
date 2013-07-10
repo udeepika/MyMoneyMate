@@ -1,58 +1,136 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#14c6ec"
     android:orientation="vertical"
     tools:context=".AddExpense" >
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="10dp"
-        android:textSize="18dp"
-        android:text="Add an Expense" />
-    <TextView
-        android:layout_width="fill_parent"
+        android:gravity="center"
+        android:text="Add an Expense"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/show_calendar"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="AMOUNT" />
+        android:layout_alignBottom="@+id/amt_date"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/amt_date"
+        android:layout_toRightOf="@+id/amt_date"
+        android:onClick="selectDate"
+        android:background="@drawable/calendar_2"
+        
+        android:text="CAL" />
+
     <EditText
         android:id="@+id/amt_val"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Amount"
-        android:layout_marginLeft="5dp" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="DATE" />
-    <EditText
-        android:id="@+id/amt_date"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Date  MM/DD/YYYY"
-        android:layout_marginLeft="5dp" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="CATEGORY" />
-    <EditText
-        android:id="@+id/amt_cat"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Category"
-        android:layout_marginLeft="5dp" />
-    
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="28dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:ems="10"
+        android:hint="Amount" />
 
     <Button
         android:id="@+id/add_btn"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="23dp"
+        android:layout_toLeftOf="@+id/amt_cat"
         android:gravity="center"
         android:text="Add" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/amt_val"
+        android:layout_alignBottom="@+id/amt_val"
+        android:layout_toLeftOf="@+id/amt_val"
+        android:text="AMOUNT" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/show_calendar"
+        android:layout_alignBottom="@+id/show_calendar"
+        android:layout_alignLeft="@+id/textView2"
+        android:text="DATE" />
+
+    <EditText
+        android:id="@+id/amt_date"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/amt_val"
+        android:layout_below="@+id/amt_val"
+        android:ems="10"
+        android:hint="MM/DD/YYYY"
+        android:inputType="date" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/amt_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/amt_date"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/show_calendar"
+        android:ems="10"
+        android:hint="Category" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/amt_cat"
+        android:layout_alignBottom="@+id/amt_cat"
+        android:layout_alignParentLeft="true"
+        android:text="CATEGORY" />
+
+    <EditText
+        android:id="@+id/notes_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_btn"
+        android:layout_alignLeft="@+id/amt_cat"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/amt_cat"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <Button
+        android:id="@+id/clear_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/add_btn"
+        android:layout_alignBottom="@+id/add_btn"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:text="Clear" />
+
+    <TextView
+        android:id="@+id/Notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_btn"
+        android:layout_alignTop="@+id/notes_txt"
+        android:layout_marginTop="64dp"
+        android:text="NOTES" />
+
+</RelativeLayout>
