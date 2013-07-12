@@ -40,7 +40,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	private static final String KEY_DATE = "date";
 	Context c;
     private ArrayList<ExpenseEntry> exList = new ArrayList<ExpenseEntry>();
-    
+    private ArrayList<String> cat_list = new ArrayList<String>();    
     public DataBaseHelper(Context context) {
 		super(context,DATABASE_NAME,null,DATABASE_VERSION);
 		c = context;
@@ -102,5 +102,24 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         db.close();
         return exList;
 }
+	public ArrayList<String> getCategories(){
+		cat_list.clear();
+		SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT DISTINCT category FROM " + TABLE_EXPENSES, null);
+        if(cursor.getCount()!=0){
+        	if (cursor.moveToFirst()) {
+                do {
+                	cat_list.add(cursor.getString(0));
+                }while(cursor.moveToNext());
+                	
+                }
+        }
+        cursor.close();
+        db.close();
+		return cat_list;
+		
+	}
 
 }
+	
+

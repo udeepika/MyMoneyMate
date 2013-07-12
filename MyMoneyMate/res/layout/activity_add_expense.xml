@@ -28,7 +28,7 @@
         
         android:background="@drawable/calendar_2"
         
-        android:text="CAL" />
+         />
 
     <EditText
         android:id="@+id/amt_val"
@@ -83,7 +83,7 @@
         <requestFocus />
     </EditText>
 
-    <EditText
+    <Spinner
         android:id="@+id/amt_cat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,15 +92,6 @@
         android:layout_below="@+id/show_calendar"
         android:ems="10"
         android:hint="Category" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/amt_cat"
-        android:layout_alignBottom="@+id/amt_cat"
-        android:layout_alignParentLeft="true"
-        android:text="CATEGORY" />
 
     <EditText
         android:id="@+id/notes_txt"
@@ -132,5 +123,14 @@
         android:layout_alignTop="@+id/notes_txt"
         android:layout_marginTop="64dp"
         android:text="NOTES" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/amt_cat"
+        android:layout_marginTop="32dp"
+        android:text="CATEGORY" />
 
 </RelativeLayout>

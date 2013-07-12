@@ -91,20 +91,14 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		DataBaseHelper db;
 		
 		// TODO Auto-generated method stub
-		System.out.println("entered fillMethod");
+		
 		db = new DataBaseHelper(this);
 		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
 		exp_list = db.getExpenses();
-		System.out.println("Got expense table");
-		//HashMap<String,String> temp = new HashMap<String,String>();
-		System.out.println("Able to access DB");
-		System.out.println("Size of list is " + exp_list.size());
-		System.out.println(exp_list.get(0).category);
 		for(int i =0;i<exp_list.size();i++){
-			//System.out.println("I am here:" + exp_list.get(i).category);
-			//System.out.println("I got the category!!");
+			
 			HashMap<String,String> temp = new HashMap<String,String>();
-			//temp.put("_id", Integer.toString(exp_list.get(i).getId()));
+			
 			temp.put("_id",Integer.toString(i+1));
 			temp.put("date",exp_list.get(i).getDate().toString());
 			temp.put("category",exp_list.get(i).category.toString());
