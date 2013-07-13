@@ -38,8 +38,8 @@ public class ViewExpensesOptionsActivity extends Activity{
 	    if(v.getId()==R.id.radioViewAll){
 	    	
 	    Intent viewIntent = new Intent(ViewExpensesOptionsActivity.this,ViewExpenseActivity.class);
-		startActivity(viewIntent);
-		onDestroy();}
+		startActivity(viewIntent);}
+		//onDestroy();}
 	    else{
 	    	
 	    	

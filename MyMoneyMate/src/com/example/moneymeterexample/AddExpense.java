@@ -16,6 +16,7 @@ Author - Deepika Punyamurtula
 email: udeepika@pdx.edu
 
 MyMoneyMate - An android application to keep a record of your expenses.
+
 ***************************************************************************************** */
 
 package com.example.moneymeterexample;
@@ -49,6 +50,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 public class AddExpense extends Activity implements OnClickListener,OnItemSelectedListener{
 	
@@ -62,13 +64,20 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 	private int mDay;
 	static final int DATE_DIALOG_ID = 0;
 	static final int NEW_CATEGORY_ID = 100;
-	ArrayList<String> cat_list ;
+	public static boolean IS_ADD = true;
+	static ArrayList<String> cat_list ;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_expense);
 		
+		boolean IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
+		String amount_val = getIntent().getStringExtra("amount");
+    	String date_val = getIntent().getStringExtra("date");
+    	String category_val = getIntent().getStringExtra("category");
+    	String notes_val = getIntent().getStringExtra("notes");
+    	
 		addExpense_btn = (Button) findViewById(R.id.add_btn);
 		clear_button = (Button) findViewById(R.id.clear_btn);
 		show_cal = (Button) findViewById(R.id.show_calendar);
@@ -79,7 +88,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 		category = (Spinner) findViewById(R.id.amt_cat);
 		category.setOnItemSelectedListener(this);
 		notes = (EditText) findViewById(R.id.notes_txt);
-		ArrayList<String> cat_list = new ArrayList<String>();
+		//ArrayList<String> cat_list = new ArrayList<String>();
 		show_cal.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -89,14 +98,36 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 			}
 		});
 		
-		final Calendar cal = Calendar.getInstance();
-		mYear = cal.get(Calendar.YEAR);
-        mMonth = cal.get(Calendar.MONTH);
-        mDay = cal.get(Calendar.DAY_OF_MONTH);
- 
-        /** Display the current date in the TextView */
-        updateDisplay();
+		
         loadCategorySpinnerValues();
+        
+        /* If this activity is reached from the listView of Expenses */
+        if (!IS_ADD){
+        	addExpense_btn.setText("Edit");
+        	clear_button.setText("Delete");
+        	System.out.println( notes_val + "" + category_val +"" + date_val);
+        	amt.setText(amount_val);
+        	date.setText(date_val);
+        	String date[] = date_val.split("/");
+        	mMonth = Integer.parseInt(date[0])-1;
+        	mDay = Integer.parseInt(date[1]);
+        	mYear = Integer.parseInt(date[2].trim());
+        	notes.setText(notes_val); 
+        	System.out.println(cat_list.indexOf(category_val.toString()));
+        	category.setSelection(cat_list.indexOf(category_val.toString()));
+        	
+        }
+        
+        
+        else{
+        	final Calendar cal = Calendar.getInstance();
+    		mYear = cal.get(Calendar.YEAR);
+            mMonth = cal.get(Calendar.MONTH);
+            mDay = cal.get(Calendar.DAY_OF_MONTH);
+     
+            /** Display the current date in the TextView */
+            updateDisplay();
+        }
 		}
 	
 
@@ -158,7 +189,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
     private void loadCategorySpinnerValues(){
     	DataBaseHelper db;
     	db = new DataBaseHelper(this);
-    	//cat_list.add("Select one..");
+    	
     	cat_list = db.getCategories();
     	
     	cat_list.add("New...");
@@ -184,6 +215,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 		// TODO Auto-generated method stub
 		switch (v.getId()){
 		case R.id.add_btn:
+			if(IS_ADD){
 			if(amt.getText().toString().equals("")||date.getText().toString().equals("")){
 				
 				Toast.makeText(AddExpense.this, "PLease add values...", Toast.LENGTH_LONG).show();
@@ -195,17 +227,23 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				ex.amount = Integer.parseInt(amt.getText().toString());
 				ex.category = category.getSelectedItem().toString();
 				ex.date = date.getText().toString();
-				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category);
+				ex.notes = notes.getText().toString();
+				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes);
 				db.addExpenseEntry(ex);
 				Toast.makeText(AddExpense.this, "Record added successfully!!", Toast.LENGTH_LONG).show();
 				
 			}
+			}
+			else{}
 			break;
 		case R.id.clear_btn:
+			if(IS_ADD){
 				amt.setText("");
 				date.setText("");
 				category.setSelection(0);
 				notes.setText("");
+			}
+			else{}
 				break;
 			default:
 				break;

@@ -29,33 +29,37 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#ff0" >
-	    <TextView android:id="@+id/No."
+
+		<TextView
+		    android:id="@+id/Date"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="0dp"
+		    android:layout_weight="0.88"
+		    android:text="DATE" />
+
+		<TextView
+		    android:id="@+id/Category"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="40dp"
+		    android:layout_weight="1"
+		    android:text="CATEGORY" />
+
+		<TextView
+		    android:id="@+id/Amount"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="20dp"
+		    android:layout_weight="1"
+		    android:text="AMOUNT" />
+
+        <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="NO."
+            android:text=""
             android:layout_marginLeft="7dp"
-            />
-        <TextView android:id="@+id/Date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="25dp"
-            android:text="DATE"
-            />
-        <TextView android:id="@+id/Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="25dp"
-            android:text="CATEGORY"
-            />
-        <TextView android:id="@+id/Amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="AMOUNT"
-            android:layout_marginLeft="25dp"
             />
 	</LinearLayout>
 

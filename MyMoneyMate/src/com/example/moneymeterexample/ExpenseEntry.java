@@ -27,12 +27,14 @@ public class ExpenseEntry {
 	String date;
 	String category;
 	int amount;
+	String notes;
 	
-	public ExpenseEntry(int _id,int amount,String category,String date){
+	public ExpenseEntry(int _id,int amount,String category,String date,String notes){
 		this._id = _id;
 		this.amount = amount;
 		this.category = category;
 		this.date = date;
+		this.notes = notes;
 	}
 	
 	public ExpenseEntry() {
@@ -62,6 +64,12 @@ public class ExpenseEntry {
 	}
 	public void setAmount(int amount){
 		this.amount = amount;
+	}
+	public void setNotes(String notes){
+		this.notes = notes;
+	}
+	public String getNotes(){
+		return this.notes;
 	}
 	
 }

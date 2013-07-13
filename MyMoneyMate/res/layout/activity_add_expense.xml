@@ -19,8 +19,8 @@
     <Button
         android:id="@+id/show_calendar"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignBottom="@+id/amt_date"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/amt_date"
@@ -43,14 +43,15 @@
 
     <Button
         android:id="@+id/add_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="23dp"
-        android:layout_toLeftOf="@+id/amt_cat"
-        android:gravity="center"
-        android:text="Add" />
+        android:background="#e5004f" 
+        android:text="Add"/>
+  		
+  		
 
     <TextView
         android:id="@+id/textView2"
@@ -105,18 +106,8 @@
         android:ems="10"
         android:inputType="textPostalAddress" />
 
-    <Button
-        android:id="@+id/clear_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/add_btn"
-        android:layout_alignBottom="@+id/add_btn"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="24dp"
-        android:text="Clear" />
-
     <TextView
-        android:id="@+id/Notes"
+        
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/add_btn"
@@ -130,7 +121,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/amt_cat"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="23dp"
         android:text="CATEGORY" />
+
+    <Button
+        android:id="@+id/clear_btn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/add_btn"
+        android:layout_alignBottom="@+id/add_btn"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:background="#e5004f"
+        android:text="Clear" />
 
 </RelativeLayout>

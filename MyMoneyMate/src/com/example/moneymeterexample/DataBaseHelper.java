@@ -31,13 +31,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper{
 	
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_NAME = "Expenses.db";
+	private static final String DATABASE_NAME = "Expenses1.db";
 	private static final String TABLE_EXPENSES = "Expenses";
 	
 	private static final String KEY_ID = "_id";
 	private static final String KEY_CATEGORY = "category";
 	private static final String KEY_AMOUNT = "amount";
 	private static final String KEY_DATE = "date";
+	private static final String NOTES = "notes";
 	Context c;
     private ArrayList<ExpenseEntry> exList = new ArrayList<ExpenseEntry>();
     private ArrayList<String> cat_list = new ArrayList<String>();    
@@ -58,7 +59,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		String query = "CREATE TABLE " + TABLE_EXPENSES + "(" + KEY_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_CATEGORY + " TEXT, " +
-				KEY_AMOUNT + " INTEGER NOT NULL, " + KEY_DATE + " TEXT);" ;
+				KEY_AMOUNT + " INTEGER NOT NULL, " + KEY_DATE + " TEXT, " + NOTES + " TEXT);" ;
 				db.execSQL(query);
 		
 		
@@ -77,6 +78,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		 contentValues.put("amount", e.amount);
 		 contentValues.put("date", e.date);
 		 contentValues.put("category", e.category);
+		 contentValues.put("notes", e.notes);
 		 db.insert(TABLE_EXPENSES,null,contentValues);
 		 db.close();
 	}
@@ -94,6 +96,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
                 	ee.amount = cursor.getInt(cursor.getColumnIndex(KEY_AMOUNT));
                 	ee.category = cursor.getString(cursor.getColumnIndex(KEY_CATEGORY));
                 	ee.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
+                	ee.notes = cursor.getString(cursor.getColumnIndex(NOTES));
                 	exList.add(ee);
                 }while(cursor.moveToNext());
         }

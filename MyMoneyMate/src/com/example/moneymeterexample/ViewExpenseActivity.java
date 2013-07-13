@@ -65,8 +65,9 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		back_btn = (Button)findViewById(R.id.back_btn);
 		back_btn.setOnClickListener(this);
 		System.out.println("Fine till here ");
-		SimpleAdapter sd = new SimpleAdapter(this, list, R.layout.table_row, new String[]{"_id","date", "category", "amount"},
-		new int[] {R.id.ID_CELL , R.id.DATE_CELL,R.id.CATEGORY_CELL,R.id.AMOUNT_CELL}); 
+		SimpleAdapter sd = new SimpleAdapter(this, list, R.layout.table_row, new String[]{"date", "category", "amount","select"},
+		new int[] {R.id.DATE_CELL,R.id.CATEGORY_CELL,R.id.AMOUNT_CELL,R.id.SELECT_ICON}); 
+		
 		fillListView();
 		setListAdapter(sd);
 		System.out.println("Fine after db...");
@@ -96,20 +97,19 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
 		exp_list = db.getExpenses();
 		for(int i =0;i<exp_list.size();i++){
-			
+			//Button b = new Button(this);
 			HashMap<String,String> temp = new HashMap<String,String>();
 			
-			temp.put("_id",Integer.toString(i+1));
+			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
 			temp.put("date",exp_list.get(i).getDate().toString());
 			temp.put("category",exp_list.get(i).category.toString());
 			temp.put("amount", Integer.toString(exp_list.get(i).getAmount()));
+			temp.put("notes", exp_list.get(i).getNotes().toString());
 		    
-		    list.add(temp);
-		   
+		    list.add(temp); 
 		    
 		    
 		}
-		System.out.println(list);
 		
 		db.close();
 		
@@ -136,6 +136,19 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 	public void onDestroy() {
         super.onDestroy();
         android.os.Process.killProcess(android.os.Process.myPid());
-    }   	
+    }   
+	
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+	    super.onListItemClick(l, v, position, id);
+	    System.out.println("The item clicked is ");
+	    Intent edit_intent = new Intent(getApplicationContext(),AddExpense.class);
+	    edit_intent.putExtra("IS_ADD",false);
+	    edit_intent.putExtra("amount", list.get(position).get("amount"));
+	    System.out.println("The amount is "+list.get(position).get("amount") );
+	    edit_intent.putExtra("date", list.get(position).get("date"));
+	    edit_intent.putExtra("category", list.get(position).get("category"));
+	    edit_intent.putExtra("notes", list.get(position).get("notes"));
+	    startActivity(edit_intent);
+	}
 
 }

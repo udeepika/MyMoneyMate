@@ -42,6 +42,10 @@
             android:name="com.example.moneymeterexample.ViewExpensesOptionsActivity"
             android:label="@string/title_activity_view_expenses_options" >
         </activity>
+        <activity
+            android:name="com.example.moneymeterexample.EditExpenseActivity"
+            android:label="@string/title_activity_edit_expense" >
+        </activity>
     </application>
 
 </manifest>

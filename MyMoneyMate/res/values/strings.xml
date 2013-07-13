@@ -8,5 +8,6 @@
     <string name="title_activity_view_expenses">ViewExpenses</string>
     <string name="title_activity_view_expense">ViewExpenseActivity</string>
     <string name="title_activity_view_expenses_options">ViewExpensesOptionsActivity</string>
-    
+    <string name="title_activity_edit_expense">EditExpenseActivity</string>
+
 </resources>

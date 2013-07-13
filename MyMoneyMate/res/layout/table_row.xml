@@ -8,13 +8,7 @@
      android:orientation="horizontal"
      android:background="#14c6ec">
  
-     <TextView android:id="@+id/ID_CELL"
-         android:layout_width="30dip"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="7dp"
-         android:gravity="center"
-         android:text="ID"
-         />
+    
      <TextView android:id="@+id/DATE_CELL"
          android:layout_width="75dip"
          android:layout_height="wrap_content"
@@ -31,7 +25,15 @@
      <TextView android:id="@+id/AMOUNT_CELL"
          android:layout_width="60dip"
          android:layout_height="wrap_content"  android:layout_weight="1"
-         android:layout_marginLeft="25dp"
+         android:layout_marginLeft="20dp"
          android:gravity="center"
          android:text="AMOUNT"/>
+     
+     <ImageView android:id="@+id/SELECT_ICON"
+         android:layout_width="40dip"
+         android:layout_height="30dip"  android:layout_weight="1"
+         android:gravity="center"
+         android:layout_marginLeft="10dp"
+         android:background="@drawable/arrow_right" />
+         
 </LinearLayout>
