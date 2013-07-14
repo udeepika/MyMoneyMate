@@ -148,6 +148,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 	    edit_intent.putExtra("date", list.get(position).get("date"));
 	    edit_intent.putExtra("category", list.get(position).get("category"));
 	    edit_intent.putExtra("notes", list.get(position).get("notes"));
+	    edit_intent.putExtra("_id", Integer.parseInt(list.get(position).get("_id").toString()));
 	    startActivity(edit_intent);
 	}
 

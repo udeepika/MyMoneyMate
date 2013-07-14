@@ -77,7 +77,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
     	String date_val = getIntent().getStringExtra("date");
     	String category_val = getIntent().getStringExtra("category");
     	String notes_val = getIntent().getStringExtra("notes");
-    	
+    	int row_id =getIntent().getIntExtra("_id", 0);
 		addExpense_btn = (Button) findViewById(R.id.add_btn);
 		clear_button = (Button) findViewById(R.id.clear_btn);
 		show_cal = (Button) findViewById(R.id.show_calendar);
@@ -88,7 +88,6 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 		category = (Spinner) findViewById(R.id.amt_cat);
 		category.setOnItemSelectedListener(this);
 		notes = (EditText) findViewById(R.id.notes_txt);
-		//ArrayList<String> cat_list = new ArrayList<String>();
 		show_cal.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -113,7 +112,6 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
         	mDay = Integer.parseInt(date[1]);
         	mYear = Integer.parseInt(date[2].trim());
         	notes.setText(notes_val); 
-        	System.out.println(cat_list.indexOf(category_val.toString()));
         	category.setSelection(cat_list.indexOf(category_val.toString()));
         	
         }
@@ -212,14 +210,34 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 	
 	@Override
 	public void onClick(View v) {
+		
+		IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
+		int row_id = getIntent().getIntExtra("_id", 0);
 		// TODO Auto-generated method stub
-		switch (v.getId()){
-		case R.id.add_btn:
-			if(IS_ADD){
-			if(amt.getText().toString().equals("")||date.getText().toString().equals("")){
+		switch(v.getId()){
+				case R.id.add_btn:
+				if(IS_ADD){
 				
-				Toast.makeText(AddExpense.this, "PLease add values...", Toast.LENGTH_LONG).show();
-			}
+				if(amt.getText().toString().equals("")||date.getText().toString().equals("")){
+				
+				Toast.makeText(AddExpense.this, "Please add values...", Toast.LENGTH_LONG).show();
+				}
+				else{
+				DataBaseHelper db = new DataBaseHelper(getApplicationContext());			
+				db.getWritableDatabase();
+				int rowid = db.getTotalRecords()+1;
+				ExpenseEntry ex = new ExpenseEntry();
+				ex.amount = Integer.parseInt(amt.getText().toString());
+				ex.category = category.getSelectedItem().toString();
+				ex.date = date.getText().toString();
+				ex.notes = notes.getText().toString();
+				ex._id = rowid;
+				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ ex._id);
+				db.addExpenseEntry(ex);
+				Toast.makeText(AddExpense.this, "Record added successfully!!", Toast.LENGTH_LONG).show();
+				db.close();
+				}
+				}	
 			else{
 				DataBaseHelper db = new DataBaseHelper(getApplicationContext());
 				db.getWritableDatabase();
@@ -228,14 +246,13 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				ex.category = category.getSelectedItem().toString();
 				ex.date = date.getText().toString();
 				ex.notes = notes.getText().toString();
-				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes);
-				db.addExpenseEntry(ex);
-				Toast.makeText(AddExpense.this, "Record added successfully!!", Toast.LENGTH_LONG).show();
-				
+				ex._id = row_id;
+				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ "" + ex._id);
+				if (db.editExpenseEntry(ex) > 0)
+				Toast.makeText(AddExpense.this, "Record updated successfully!!", Toast.LENGTH_LONG).show();
+				db.close();
 			}
-			}
-			else{}
-			break;
+				 break;
 		case R.id.clear_btn:
 			if(IS_ADD){
 				amt.setText("");
@@ -243,13 +260,25 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				category.setSelection(0);
 				notes.setText("");
 			}
-			else{}
-				break;
-			default:
-				break;
+			else{
+				row_id = getIntent().getIntExtra("_id", 0);
+				DataBaseHelper db = new DataBaseHelper(getApplicationContext());
+				db.getWritableDatabase();
+				ExpenseEntry ex = new ExpenseEntry();
+				ex.amount = Integer.parseInt(amt.getText().toString());
+				ex.category = category.getSelectedItem().toString();
+				ex.date = date.getText().toString();
+				ex.notes = notes.getText().toString();
+				ex._id = row_id;
+				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ "" + ex._id);
+				if(db.deleteRecord(ex))
+					Toast.makeText(AddExpense.this, "Record Deleted", Toast.LENGTH_LONG).show(); 
+				db.close();
+			}
+			break;	
 		}
 		
-	}
+}
 		
 	
 
@@ -277,7 +306,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 					cat_list.add(cat);
 					cat_list.add(last);
 					((BaseAdapter) category.getAdapter()).notifyDataSetChanged();
-					System.out.println("Item selected is :"+category.getSelectedItem());
+					
 				}
 			});
 			new_cat_dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

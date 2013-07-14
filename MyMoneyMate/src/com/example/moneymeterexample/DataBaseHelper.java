@@ -31,7 +31,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper{
 	
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_NAME = "Expenses1.db";
+	private static final String DATABASE_NAME = "Expenses_table.db";
 	private static final String TABLE_EXPENSES = "Expenses";
 	
 	private static final String KEY_ID = "_id";
@@ -79,8 +79,21 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		 contentValues.put("date", e.date);
 		 contentValues.put("category", e.category);
 		 contentValues.put("notes", e.notes);
+		 contentValues.put("_id", e._id);
 		 db.insert(TABLE_EXPENSES,null,contentValues);
 		 db.close();
+	}
+	
+	public int editExpenseEntry(ExpenseEntry e){
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues contentValues = new ContentValues();
+		 contentValues.put("amount", e.amount);
+		 contentValues.put("date", e.date);
+		 contentValues.put("category", e.category);
+		 contentValues.put("notes", e.notes);
+		 
+		 return db.update(TABLE_EXPENSES, contentValues, KEY_ID +"="+ e._id, null) ;
+		 //db.update(TABLE_EXPENSES, contentValues, KEY_ID + "=" + e._id,null)>0;
 	}
 	
 	public ArrayList<ExpenseEntry> getExpenses(){
@@ -122,7 +135,22 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		return cat_list;
 		
 	}
-
+	
+	
+	public int getTotalRecords(){
+		SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES , null);
+        int recCount =  cursor.getCount();
+        cursor.close();
+        db.close();
+        return recCount;
+        
+	}
+	
+	public boolean deleteRecord(ExpenseEntry e){
+		SQLiteDatabase db = this.getWritableDatabase();
+		return db.delete(TABLE_EXPENSES, KEY_ID + "=" + e._id , null) >0 ;
+	}
 }
 	
 
