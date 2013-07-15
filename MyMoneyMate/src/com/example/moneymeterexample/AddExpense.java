@@ -64,9 +64,11 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 	private int mDay;
 	static final int DATE_DIALOG_ID = 0;
 	static final int NEW_CATEGORY_ID = 100;
+	static final int DELETE_CONFIRM_ID = 200;
 	public static boolean IS_ADD = true;
 	static ArrayList<String> cat_list ;
-	
+	public  int row_id;
+	boolean check = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -189,7 +191,8 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
     	db = new DataBaseHelper(this);
     	
     	cat_list = db.getCategories();
-    	
+    	if(cat_list.size()==0){
+    	cat_list.add("No Selection");}
     	cat_list.add("New...");
     	ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, cat_list);
@@ -218,7 +221,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				case R.id.add_btn:
 				if(IS_ADD){
 				
-				if(amt.getText().toString().equals("")||date.getText().toString().equals("")){
+				if(amt.getText().toString().equals("")||date.getText().toString().equals("")||category.getSelectedItem().equals("No Selection")){
 				
 				Toast.makeText(AddExpense.this, "Please add values...", Toast.LENGTH_LONG).show();
 				}
@@ -253,6 +256,9 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				db.close();
 			}
 				 break;
+				 
+		case R.id.amt_cat:
+			
 		case R.id.clear_btn:
 			if(IS_ADD){
 				amt.setText("");
@@ -261,19 +267,10 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				notes.setText("");
 			}
 			else{
-				row_id = getIntent().getIntExtra("_id", 0);
-				DataBaseHelper db = new DataBaseHelper(getApplicationContext());
-				db.getWritableDatabase();
-				ExpenseEntry ex = new ExpenseEntry();
-				ex.amount = Integer.parseInt(amt.getText().toString());
-				ex.category = category.getSelectedItem().toString();
-				ex.date = date.getText().toString();
-				ex.notes = notes.getText().toString();
-				ex._id = row_id;
-				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ "" + ex._id);
-				if(db.deleteRecord(ex))
-					Toast.makeText(AddExpense.this, "Record Deleted", Toast.LENGTH_LONG).show(); 
-				db.close();
+					System.out.println("The value of IS_ADD is :" + IS_ADD);
+					System.out.println();
+					showDialog(DELETE_CONFIRM_ID);
+				
 			}
 			break;	
 		}
@@ -283,6 +280,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 	
 
 	protected Dialog onCreateDialog(int id) {
+		IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
 		switch (id) {
 		case DATE_DIALOG_ID:
 				return new DatePickerDialog(this,
@@ -315,32 +313,82 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					dialog.cancel();
+					
+				}
+			});
+			
+			/*AlertDialog alert = new_cat_dialog.create();
+			alert.show();
+			break; */
+			return new_cat_dialog.create();
+					
+	
+		case DELETE_CONFIRM_ID:
+			AlertDialog.Builder delete_dialog = new AlertDialog.Builder(this);
+			delete_dialog.setMessage("Are you sure you want to delete this entry?");
+			delete_dialog.setTitle("Delete Confirmation");
+			delete_dialog.setCancelable(false)
+			.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				
+				@Override	
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					deleteRecord();
+				}
+			});
+            delete_dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					dialog.cancel();
 					category.setSelection(0);
 				}
 			});
 			
-			AlertDialog alert = new_cat_dialog.create();
-			alert.show();
 			
-					}
+            return delete_dialog.create();
+			
 		
 			
+		
+	}
 		return null;
 	}
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 	// TODO Auto-generated method stub
-	String category_val = parent.getItemAtPosition(position).toString();
-	if(category_val.equals("New...")){
-		System.out.println("Category value is New...");
-		showDialog(NEW_CATEGORY_ID);
-	}
 		
-	
+		
+			String category_val = parent.getItemAtPosition(position).toString();
+			if(category_val.equals("New..."))
+			{
+				
+				System.out.println("Value of check is"+ check);
+				
+				showDialog(NEW_CATEGORY_ID);
+				
+			}	
 	}
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 	// TODO Auto-generated method stub
 		
 		}
+	
+	public void deleteRecord(){
+		row_id = getIntent().getIntExtra("_id", 0);
+		DataBaseHelper db = new DataBaseHelper(getApplicationContext());
+		db.getWritableDatabase();
+		ExpenseEntry ex = new ExpenseEntry();
+		ex.amount = Integer.parseInt(amt.getText().toString());
+		ex.category = category.getSelectedItem().toString();
+		ex.date = date.getText().toString();
+		ex.notes = notes.getText().toString();
+		ex._id = row_id;
+		Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ "" + ex._id);
+		if(db.deleteRecord(ex))
+			Toast.makeText(AddExpense.this, "Record Deleted", Toast.LENGTH_LONG).show(); 
+		db.close(); 
+	}
     }
