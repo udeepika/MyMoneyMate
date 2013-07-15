@@ -28,6 +28,7 @@ Written by Deepika Punyamurtula email: udeepika@pdx.edu
 LICENSE INFORMATION
 -------------------
 Please see the file License in this distribution for license terms. Below is the link to the file License.
+
 https://github.com/udeepika/MyMoneyMate/blob/master/License.txt
 
 
