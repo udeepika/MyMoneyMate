@@ -151,6 +151,29 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		return db.delete(TABLE_EXPENSES, KEY_ID + "=" + e._id , null) >0 ;
 	}
+	
+	ArrayList<ExpenseEntry> getExpensesByDate(String date_val){
+		exList.clear();
+		SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE date LIKE"+"'"+date_val+"'", null);
+        System.out.println("In DB function dat val is "+ date_val);
+        if(cursor.getCount()!=0){
+        	if (cursor.moveToFirst()) {
+                do {
+                	ExpenseEntry ee = new ExpenseEntry();
+                	ee._id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
+                	ee.amount = cursor.getInt(cursor.getColumnIndex(KEY_AMOUNT));
+                	ee.category = cursor.getString(cursor.getColumnIndex(KEY_CATEGORY));
+                	ee.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
+                	ee.notes = cursor.getString(cursor.getColumnIndex(NOTES));
+                	exList.add(ee);
+                }while(cursor.moveToNext());
+        }
+	}
+        cursor.close();
+        db.close();
+        return exList;
+}
 }
 	
 

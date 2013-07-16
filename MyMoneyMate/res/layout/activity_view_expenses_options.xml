@@ -11,32 +11,42 @@
     android:background="#14c6ec">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="283dp"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Please choose one from the following:-"
-        />
-    
-    <RadioGroup
-        android:id="@+id/radioViewOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
-        <RadioButton
-            android:id="@+id/radioViewAll"
-            android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="View Expenses"
+        android:textSize="20sp" />
+"
+        
+        <Button
+            android:id="@+id/ViewAll_btn"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="View All Expenses" 
-            android:checked="false" 
-            android:onClick="onRadioButtonClick"/>
-    </RadioGroup>
-
-    <RadioButton
-        android:id="@+id/radioViewBy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Selected Expenses"
-         android:onClick="onRadioButtonClick" />
-   
+            android:text="View All" 
+            android:checked="false" />
+           
+    	<Button
+        	android:id="@+id/ViewByCat_btn"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="View By Category" />
+         	
+    
+   		<Button android:id="@+id/ViewByDate_btn"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="View By Date"/>
+   		
+   		<Button android:id="@+id/ViewByMonth_btn"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="View By Month"
+         	android:onClick="onRadioButtonClick" />
+   		
+   		<Button android:id="@+id/CustomView_btn"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="Customized View"
+         	android:onClick="onRadioButtonClick" />
 </LinearLayout>
 

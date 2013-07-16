@@ -224,6 +224,8 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				if(amt.getText().toString().equals("")||date.getText().toString().equals("")||category.getSelectedItem().equals("No Selection")){
 				
 				Toast.makeText(AddExpense.this, "Please add values...", Toast.LENGTH_LONG).show();
+				if(category.getSelectedItem().equals("No Selection"))
+					Toast.makeText(AddExpense.this, "Please select a category..", Toast.LENGTH_LONG).show();
 				}
 				else{
 				DataBaseHelper db = new DataBaseHelper(getApplicationContext());			
@@ -257,8 +259,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 			}
 				 break;
 				 
-		case R.id.amt_cat:
-			
+		
 		case R.id.clear_btn:
 			if(IS_ADD){
 				amt.setText("");

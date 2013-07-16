@@ -46,6 +46,10 @@
             android:name="com.example.moneymeterexample.EditExpenseActivity"
             android:label="@string/title_activity_edit_expense" >
         </activity>
+        <activity
+            android:name="com.example.moneymeterexample.ViewByDateActivity"
+            android:label="@string/title_activity_view_by_date" >
+        </activity>
     </application>
 
 </manifest>

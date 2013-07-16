@@ -56,21 +56,29 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		    new ArrayList<HashMap<String,String>>(); 
 	//DataBaseHelper db;
 	ListView lv;
-	TextView txt_id;
+	TextView txt_id,total;
 	Button back_btn;
+	int view_by;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_expense);
 		back_btn = (Button)findViewById(R.id.back_btn);
 		back_btn.setOnClickListener(this);
+		view_by = getIntent().getIntExtra("view_by", 0);
 		System.out.println("Fine till here ");
 		SimpleAdapter sd = new SimpleAdapter(this, list, R.layout.table_row, new String[]{"date", "category", "amount","select"},
 		new int[] {R.id.DATE_CELL,R.id.CATEGORY_CELL,R.id.AMOUNT_CELL,R.id.SELECT_ICON}); 
-		
-		fillListView();
+		total = (TextView)findViewById(R.id.tvValue);
+		if(view_by==1)
+			fillListViewByDate();
+		else
+			fillListView();
 		setListAdapter(sd);
-		System.out.println("Fine after db...");
+		
+		
+		
 		
 	}
 
@@ -92,12 +100,26 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		DataBaseHelper db;
 		
 		// TODO Auto-generated method stub
+		int sum = 0;
 		
+		
+		//System.out.println(from + "" + date_val);
 		db = new DataBaseHelper(this);
 		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
+		//String date_val = new String(getIntent().getExtras().getString("date_val"));
+		//String from = new String(getIntent().getExtras().getString("FROM"));
+		
+			//date_val = getIntent().getStringExtra("date_val");
+			//exp_list = db.getExpensesByDate(date_val);
+			System.out.println("rwached bydate function");
+		
+		
+		System.out.println("Entered all");
 		exp_list = db.getExpenses();
+		System.out.println("After get expenses");
+		
 		for(int i =0;i<exp_list.size();i++){
-			//Button b = new Button(this);
+			Button b = new Button(this);
 			HashMap<String,String> temp = new HashMap<String,String>();
 			
 			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
@@ -105,12 +127,13 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 			temp.put("category",exp_list.get(i).category.toString());
 			temp.put("amount", Integer.toString(exp_list.get(i).getAmount()));
 			temp.put("notes", exp_list.get(i).getNotes().toString());
-		    
+		    //sum+=exp_list.get(i).getAmount();
 		    list.add(temp); 
 		    
 		    
 		}
 		
+		//total.setText(sum);
 		db.close();
 		
 		
@@ -150,6 +173,38 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 	    edit_intent.putExtra("notes", list.get(position).get("notes"));
 	    edit_intent.putExtra("_id", Integer.parseInt(list.get(position).get("_id").toString()));
 	    startActivity(edit_intent);
+	}
+	
+	private void fillListViewByDate(){
+		DataBaseHelper db;
+		db = new DataBaseHelper(this);
+		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
+		
+		String date = getIntent().getExtras().getString("date_val");
+		exp_list = db.getExpensesByDate(date);
+		System.out.println("rwached bydate function");
+		for(int i =0;i<exp_list.size();i++){
+			Button b = new Button(this);
+			HashMap<String,String> temp = new HashMap<String,String>();
+			
+			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
+			temp.put("date",exp_list.get(i).getDate().toString());
+			temp.put("category",exp_list.get(i).category.toString());
+			temp.put("amount", Integer.toString(exp_list.get(i).getAmount()));
+			temp.put("notes", exp_list.get(i).getNotes().toString());
+		    //sum+=exp_list.get(i).getAmount();
+		    list.add(temp); 
+		    
+		    
+		}
+		
+		//total.setText(sum);
+		db.close();
+		
+		
+	
+		
+		
 	}
 
 }

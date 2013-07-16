@@ -6,24 +6,29 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class ViewExpensesOptionsActivity extends Activity{
+public class ViewExpensesOptionsActivity extends Activity implements OnClickListener{
 	
-	RadioGroup view_options;
-	RadioButton button;
+	Button view_all, view_by_date, view_by_cat, view_by_month, view_custom;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_expenses_options);
-		RadioGroup view_options = (RadioGroup)findViewById(R.id.radioViewOptions);
-		OnClickListener radio_listener = new OnClickListener(){
-			public void onClick(View v) {
-		        onRadioButtonClick(v);
-		    }
-		};
+		Button view_all = (Button)findViewById(R.id.ViewAll_btn);
+		view_all.setOnClickListener(this);
+		Button view_by_date = (Button) findViewById(R.id.ViewByDate_btn);
+		view_by_date.setOnClickListener(this);
+		Button view_by_cat = (Button)findViewById(R.id.ViewByCat_btn);
+		view_all.setOnClickListener(this);
+		Button view_by_month = (Button) findViewById(R.id.ViewByMonth_btn);
+		view_by_date.setOnClickListener(this);
+		Button view_custom = (Button) findViewById(R.id.CustomView_btn);
+		view_by_date.setOnClickListener(this);
+		
 	} ;
 
 	@Override
@@ -33,19 +38,33 @@ public class ViewExpensesOptionsActivity extends Activity{
 		return true;
 	}
 	
-	public void onRadioButtonClick(View v) {
-	    RadioButton button = (RadioButton) v;
-	    if(v.getId()==R.id.radioViewAll){
+	public void onClick(View v) {
+		switch(v.getId()){
+	
+		
+	    
+		case R.id.ViewAll_btn:
 	    	
 	    Intent viewIntent = new Intent(ViewExpensesOptionsActivity.this,ViewExpenseActivity.class);
-		startActivity(viewIntent);}
+		startActivity(viewIntent);
 		//onDestroy();}
-	    else{
-	    	
-	    	
-	    }
+	    break;
 	    
-		
+	    case R.id.ViewByCat_btn:
+	    
+	    break;
+	    
+	    case R.id.ViewByDate_btn:
+	    Intent viewbyDateIntent = new Intent(ViewExpensesOptionsActivity.this,ViewByDateActivity.class);
+		startActivity(viewbyDateIntent);
+	    break;
+	    
+	    case R.id.ViewByMonth_btn:
+	    break;
+	    
+	    case R.id.CustomView_btn:
+	    break;
+		}
 	}
 	
 	public void onDestroy() {
