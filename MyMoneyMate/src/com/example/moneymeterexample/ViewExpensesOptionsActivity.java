@@ -23,7 +23,7 @@ public class ViewExpensesOptionsActivity extends Activity implements OnClickList
 		Button view_by_date = (Button) findViewById(R.id.ViewByDate_btn);
 		view_by_date.setOnClickListener(this);
 		Button view_by_cat = (Button)findViewById(R.id.ViewByCat_btn);
-		view_all.setOnClickListener(this);
+		view_by_cat.setOnClickListener(this);
 		Button view_by_month = (Button) findViewById(R.id.ViewByMonth_btn);
 		view_by_date.setOnClickListener(this);
 		Button view_custom = (Button) findViewById(R.id.CustomView_btn);
@@ -51,6 +51,8 @@ public class ViewExpensesOptionsActivity extends Activity implements OnClickList
 	    break;
 	    
 	    case R.id.ViewByCat_btn:
+	    	Intent viewbyCatIntent = new Intent(ViewExpensesOptionsActivity.this,ViewByCategoryActivity.class);
+			startActivity(viewbyCatIntent);
 	    
 	    break;
 	    

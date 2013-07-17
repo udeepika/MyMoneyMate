@@ -50,6 +50,10 @@
             android:name="com.example.moneymeterexample.ViewByDateActivity"
             android:label="@string/title_activity_view_by_date" >
         </activity>
+        <activity
+            android:name="com.example.moneymeterexample.ViewByCategoryActivity"
+            android:label="@string/title_activity_view_by_category" >
+        </activity>
     </application>
 
 </manifest>

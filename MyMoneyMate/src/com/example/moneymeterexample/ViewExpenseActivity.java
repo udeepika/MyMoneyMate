@@ -71,10 +71,19 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		SimpleAdapter sd = new SimpleAdapter(this, list, R.layout.table_row, new String[]{"date", "category", "amount","select"},
 		new int[] {R.id.DATE_CELL,R.id.CATEGORY_CELL,R.id.AMOUNT_CELL,R.id.SELECT_ICON}); 
 		total = (TextView)findViewById(R.id.tvValue);
-		if(view_by==1)
+		switch(view_by){
+		case 1:
 			fillListViewByDate();
-		else
+			break;
+		case 2:
+			fillListViewByCat();
+			break;
+		default:
 			fillListView();
+			break;
+		}
+		
+			
 		setListAdapter(sd);
 		
 		
@@ -186,7 +195,6 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		for(int i =0;i<exp_list.size();i++){
 			Button b = new Button(this);
 			HashMap<String,String> temp = new HashMap<String,String>();
-			
 			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
 			temp.put("date",exp_list.get(i).getDate().toString());
 			temp.put("category",exp_list.get(i).category.toString());
@@ -201,10 +209,33 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		//total.setText(sum);
 		db.close();
 		
-		
+	}
 	
+	private void fillListViewByCat(){
+		DataBaseHelper db;
+		db = new DataBaseHelper(this);
+		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
+		String cat_value = getIntent().getExtras().getString("cat_value");
+		exp_list = db.getExpenseByCategory(cat_value);
+		System.out.println("reached bycat function");
+		for(int i =0;i<exp_list.size();i++){
+			Button b = new Button(this);
+			HashMap<String,String> temp = new HashMap<String,String>();
+			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
+			temp.put("date",exp_list.get(i).getDate().toString());
+			temp.put("category",exp_list.get(i).category.toString());
+			temp.put("amount", Integer.toString(exp_list.get(i).getAmount()));
+			temp.put("notes", exp_list.get(i).getNotes().toString());
+		    //sum+=exp_list.get(i).getAmount();
+		    list.add(temp); 
+		    
+		    
+		}
 		
+		//total.setText(sum);
+		db.close();
 		
 	}
+	
 
 }
