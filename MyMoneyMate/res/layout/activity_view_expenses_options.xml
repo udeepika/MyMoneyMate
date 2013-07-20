@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewExpensesOptionsActivity" 
-    android:background="#14c6ec">
+    android:background="@drawable/bck_5">
 
     <TextView
         android:layout_width="283dp"

@@ -109,7 +109,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		DataBaseHelper db;
 		
 		// TODO Auto-generated method stub
-		int sum = 0;
+		
 		
 		
 		//System.out.println(from + "" + date_val);
@@ -122,7 +122,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 			//exp_list = db.getExpensesByDate(date_val);
 			System.out.println("rwached bydate function");
 		
-		
+		int sum = 0;
 		System.out.println("Entered all");
 		exp_list = db.getExpenses();
 		System.out.println("After get expenses");
@@ -134,15 +134,15 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
 			temp.put("date",exp_list.get(i).getDate().toString());
 			temp.put("category",exp_list.get(i).category.toString());
-			temp.put("amount", Integer.toString(exp_list.get(i).getAmount()));
+			temp.put("amount", Integer.toString(exp_list.get(i).getAmount())+".00");
 			temp.put("notes", exp_list.get(i).getNotes().toString());
-		    //sum+=exp_list.get(i).getAmount();
+		    sum+=exp_list.get(i).getAmount();
 		    list.add(temp); 
 		    
 		    
 		}
-		
-		//total.setText(sum);
+		//String totalVal = new String("Total Amount Spent : "+);
+		total.setText(String.valueOf(sum)+".00");
 		db.close();
 		
 		
@@ -191,6 +191,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		
 		String date = getIntent().getExtras().getString("date_val");
 		exp_list = db.getExpensesByDate(date);
+		int sum = 0;
 		System.out.println("rwached bydate function");
 		for(int i =0;i<exp_list.size();i++){
 			Button b = new Button(this);
@@ -198,15 +199,16 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
 			temp.put("date",exp_list.get(i).getDate().toString());
 			temp.put("category",exp_list.get(i).category.toString());
-			temp.put("amount", Integer.toString(exp_list.get(i).getAmount()));
+			temp.put("amount", Integer.toString(exp_list.get(i).getAmount())+".00");
 			temp.put("notes", exp_list.get(i).getNotes().toString());
-		    //sum+=exp_list.get(i).getAmount();
+		    sum+=exp_list.get(i).getAmount();
 		    list.add(temp); 
 		    
 		    
 		}
 		
-		//total.setText(sum);
+		
+		total.setText(String.valueOf(sum)+".00");
 		db.close();
 		
 	}
@@ -217,6 +219,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
 		String cat_value = getIntent().getExtras().getString("cat_value");
 		exp_list = db.getExpenseByCategory(cat_value);
+		int sum = 0;
 		System.out.println("reached bycat function");
 		for(int i =0;i<exp_list.size();i++){
 			Button b = new Button(this);
@@ -224,15 +227,15 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
 			temp.put("date",exp_list.get(i).getDate().toString());
 			temp.put("category",exp_list.get(i).category.toString());
-			temp.put("amount", Integer.toString(exp_list.get(i).getAmount()));
+			temp.put("amount", Integer.toString(exp_list.get(i).getAmount())+".00");
 			temp.put("notes", exp_list.get(i).getNotes().toString());
-		    //sum+=exp_list.get(i).getAmount();
+		    sum+=exp_list.get(i).getAmount();
 		    list.add(temp); 
 		    
 		    
 		}
 		
-		//total.setText(sum);
+		total.setText(String.valueOf(sum)+".00");
 		db.close();
 		
 	}

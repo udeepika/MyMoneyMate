@@ -8,28 +8,43 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewExpenseActivity"
-    android:background="#14c6ec"
+    android:background="@drawable/bck_5"
      >
 
     <Button
         android:id="@+id/back_btn"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="67dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="Main Menu" />
+        android:text="Back" />
 
-	<TextView android:id="@+id/tvHeader"
-	    android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#f00"
-        android:text="Total Amount Spent = " />
-	
-	<TextView android:id="@+id/tvValue"
-	    android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#302ecb"
-       />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tvHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="0.16"
+            android:gravity="left"
+            android:text="Total Amount - "
+            android:textColor="#f00" />
+
+        <TextView
+            android:id="@+id/tvValue"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_toRightOf="@+id/tvHeader"
+            android:textColor="#302ecb" 
+            android:layout_alignParentRight="true"/>
+
+    </LinearLayout>
+
 	<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

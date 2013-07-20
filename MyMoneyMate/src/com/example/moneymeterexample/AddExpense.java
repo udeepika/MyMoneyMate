@@ -110,9 +110,9 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
         	amt.setText(amount_val);
         	date.setText(date_val);
         	String date[] = date_val.split("/");
-        	mMonth = Integer.parseInt(date[0])-1;
-        	mDay = Integer.parseInt(date[1]);
-        	mYear = Integer.parseInt(date[2].trim());
+        	mYear = Integer.parseInt(date[0]);
+        	mMonth = Integer.parseInt(date[1])-1;
+        	mDay = Integer.parseInt(date[2].trim());
         	notes.setText(notes_val); 
         	category.setSelection(cat_list.indexOf(category_val.toString()));
         	
@@ -152,18 +152,19 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
                 	date.setText(
                 	new StringBuilder()
                     // Appending 0 to month and day for the  format MM/DD/YYYY
+                    .append(mYear).append("/")
                     .append(0).append(mMonth + 1).append("/")
-                    .append(0).append(mDay).append("/")
-                    .append(mYear).append(" ")); 
+                    .append(0).append(mDay)
+                    .append(" ")); 
             			}
             
             else     	{
             		date.setText(
             		// Appending 0 to month for the format MM/DD/YYYY
             		new StringBuilder()
-                    .append(0).append(mMonth + 1).append("/")
-                    .append(mDay).append("/")
-                    .append(mYear).append(" "));
+                    .append(mYear).append("/").append(0).append(mMonth + 1).append("/")
+                    .append(mDay)
+                    .append(" "));
             		
             	}
             }
@@ -171,9 +172,9 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
             		date.setText(
                             new StringBuilder()
                                     // Month is 0 based so add 1
-                                    .append(mMonth + 1).append("/")
-                                    .append(mDay).append("/")
-                                    .append(mYear).append(" "));
+                                    .append(mYear).append("/").append(mMonth + 1).append("/")
+                                    .append(mDay)
+                                    .append(" "));
             		
             	}
             	
@@ -268,8 +269,8 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				notes.setText("");
 			}
 			else{
-					System.out.println("The value of IS_ADD is :" + IS_ADD);
-					System.out.println();
+					//System.out.println("The value of IS_ADD is :" + IS_ADD);
+					//System.out.println();
 					showDialog(DELETE_CONFIRM_ID);
 				
 			}

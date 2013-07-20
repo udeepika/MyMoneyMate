@@ -84,18 +84,18 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 	                	date.setText(
 	                	new StringBuilder()
 	                    // Appending 0 to month and day for the  format MM/DD/YYYY
-	                    .append(0).append(mMonth + 1).append("/")
-	                    .append(0).append(mDay).append("/")
-	                    .append(mYear).append(" ")); 
+	                    .append(mYear).append("/").append(0).append(mMonth + 1).append("/")
+	                    .append(0).append(mDay)
+	                    .append(" ")); 
 	            			}
 	            
 	            else     	{
 	            		date.setText(
 	            		// Appending 0 to month for the format MM/DD/YYYY
 	            		new StringBuilder()
-	                    .append(0).append(mMonth + 1).append("/")
-	                    .append(mDay).append("/")
-	                    .append(mYear).append(" "));
+	                    .append(mYear).append("/").append(0).append(mMonth + 1).append("/")
+	                    .append(mDay)
+	                    .append(" "));
 	            		
 	            	}
 	            }
@@ -103,9 +103,9 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 	            		date.setText(
 	                            new StringBuilder()
 	                                    // Month is 0 based so add 1
-	                                    .append(mMonth + 1).append("/")
-	                                    .append(mDay).append("/")
-	                                    .append(mYear).append(" "));
+	                                    .append(mYear).append("/").append(mMonth + 1).append("/")
+	                                    .append(mDay)
+	                                    .append(" "));
 	            		
 	            	}
 	            	
