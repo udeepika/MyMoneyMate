@@ -37,12 +37,6 @@
         	android:layout_height="wrap_content"
         	android:text="View By Date"/>
    		
-   		<Button android:id="@+id/ViewByMonth_btn"
-        	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:text="View By Month"
-         	android:onClick="onRadioButtonClick" />
-   		
    		<Button android:id="@+id/CustomView_btn"
         	android:layout_width="fill_parent"
         	android:layout_height="wrap_content"

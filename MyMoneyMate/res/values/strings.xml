@@ -11,5 +11,6 @@
     <string name="title_activity_edit_expense">EditExpenseActivity</string>
     <string name="title_activity_view_by_date">ViewByDateActivity</string>
     <string name="title_activity_view_by_category">ViewByCategoryActivity</string>
+    <string name="title_activity_custom_view">CustomViewActivity</string>
 
 </resources>

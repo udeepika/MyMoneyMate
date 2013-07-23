@@ -1,3 +1,26 @@
+/* *************************************************************************************
+Copyright © 2013 Deepika Punyamurtula
+
+This program is free software: you can redistribute it and/or modify it under 
+the terms of the GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. 
+If not, see http://www.gnu.org/licenses/.
+
+Author - Deepika Punyamurtula
+email: udeepika@pdx.edu
+
+MyMoneyMate - An android application to keep a record of your expenses.
+
+***************************************************************************************** */
+
+
+
 package com.example.moneymeterexample;
 
 import java.util.ArrayList;
@@ -15,6 +38,7 @@ import android.widget.LinearLayout;
 
 public class ViewByCategoryActivity extends Activity implements OnClickListener {
 	public static ArrayList<String> cat_btn_list ;
+	public static final int VIEW_BY_CAT_ID = 2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +65,7 @@ public class ViewByCategoryActivity extends Activity implements OnClickListener 
 					// TODO Auto-generated method stub
 					Button b = (Button) v;
 					Intent view_by_cat_intent = new Intent(ViewByCategoryActivity.this,ViewExpenseActivity.class );
-					view_by_cat_intent.putExtra("view_by", 2);
+					view_by_cat_intent.putExtra("view_by", VIEW_BY_CAT_ID);
 					view_by_cat_intent.putExtra("cat_value",b.getText().toString());
 					System.out.println("The value of cat is " + b.getText());
 					startActivity(view_by_cat_intent);

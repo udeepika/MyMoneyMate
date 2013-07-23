@@ -31,8 +31,10 @@
             android:layout_alignParentLeft="true"
             android:layout_weight="0.16"
             android:gravity="left"
-            android:text="Total Amount - "
-            android:textColor="#f00" />
+            android:text="Total Amount : "
+            android:textSize="20sp"
+            android:textColor="#f00" 
+            android:textStyle="bold" />"
 
         <TextView
             android:id="@+id/tvValue"
@@ -41,7 +43,10 @@
             android:layout_gravity="left"
             android:layout_toRightOf="@+id/tvHeader"
             android:textColor="#302ecb" 
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:gravity="left"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

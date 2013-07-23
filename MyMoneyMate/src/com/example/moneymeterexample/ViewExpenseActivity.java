@@ -72,11 +72,14 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		new int[] {R.id.DATE_CELL,R.id.CATEGORY_CELL,R.id.AMOUNT_CELL,R.id.SELECT_ICON}); 
 		total = (TextView)findViewById(R.id.tvValue);
 		switch(view_by){
-		case 1:
+		case ViewByDateActivity.VIEW_BY_DATE_ID:
 			fillListViewByDate();
 			break;
-		case 2:
+		case ViewByCategoryActivity.VIEW_BY_CAT_ID:
 			fillListViewByCat();
+			break;
+		case CustomViewActivity.VIEW_CUSTOM_ID:
+			fillListViewCustom();
 			break;
 		default:
 			fillListView();
@@ -115,11 +118,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		//System.out.println(from + "" + date_val);
 		db = new DataBaseHelper(this);
 		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
-		//String date_val = new String(getIntent().getExtras().getString("date_val"));
-		//String from = new String(getIntent().getExtras().getString("FROM"));
 		
-			//date_val = getIntent().getStringExtra("date_val");
-			//exp_list = db.getExpensesByDate(date_val);
 			System.out.println("rwached bydate function");
 		
 		int sum = 0;
@@ -240,5 +239,33 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		
 	}
 	
+	private void fillListViewCustom(){
+		DataBaseHelper db;
+		db = new DataBaseHelper(this);
+		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
+		String cat_value = getIntent().getExtras().getString("cat_value");
+		String from_date = getIntent().getExtras().getString("from_date");
+		String to_date = getIntent().getExtras().getString("to_date");
+		exp_list = db.getCustomExpense(cat_value,from_date,to_date);
+		int sum = 0;
+		System.out.println("reached bycat function");
+		for(int i =0;i<exp_list.size();i++){
+			Button b = new Button(this);
+			HashMap<String,String> temp = new HashMap<String,String>();
+			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
+			temp.put("date",exp_list.get(i).getDate().toString());
+			temp.put("category",exp_list.get(i).category.toString());
+			temp.put("amount", Integer.toString(exp_list.get(i).getAmount())+".00");
+			temp.put("notes", exp_list.get(i).getNotes().toString());
+		    sum+=exp_list.get(i).getAmount();
+		    list.add(temp); 
+		    
+		    
+		}
+		
+		total.setText(String.valueOf(sum)+".00");
+		db.close();
+		
+	}
 
 }

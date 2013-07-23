@@ -198,6 +198,36 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         db.close();
         return exList;
 }
+	public ArrayList<ExpenseEntry> getCustomExpense(String cat,String from_date,String to_date){
+		exList.clear();
+		Cursor cursor;
+		SQLiteDatabase db = this.getWritableDatabase();
+		if (cat.equals("All"))
+		cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE date BETWEEN '"
+	        		+from_date+"' AND '"+to_date+"'", null); 
+		
+		else
+        cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE category="+"'"+cat+"' AND date BETWEEN '"
+        		+from_date+"' AND '"+to_date+"'", null);  
+       
+        if(cursor.getCount()!=0){
+        	if (cursor.moveToFirst()) {
+                do {
+                	ExpenseEntry ee = new ExpenseEntry();
+                	ee._id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
+                	ee.amount = cursor.getInt(cursor.getColumnIndex(KEY_AMOUNT));
+                	ee.category = cursor.getString(cursor.getColumnIndex(KEY_CATEGORY));
+                	ee.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
+                	ee.notes = cursor.getString(cursor.getColumnIndex(NOTES));
+                	exList.add(ee);
+                }while(cursor.moveToNext());
+        }
+	}
+        cursor.close();
+        db.close();
+        return exList;
+}
+	
 }
 	
 
