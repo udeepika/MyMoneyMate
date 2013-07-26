@@ -28,19 +28,26 @@ import java.util.ArrayList;
 import android.R.color;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
-public class ViewByCategoryActivity extends Activity implements OnClickListener {
+
+public class ViewByCategoryActivity extends ListActivity implements OnClickListener {
 	public static ArrayList<String> cat_btn_list ;
 	public static final int VIEW_BY_CAT_ID = 2;
-	
+	ListView lv;
+	ArrayAdapter<String> adapter;
+	//public static SimpleAdapter catAdapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,17 +55,19 @@ public class ViewByCategoryActivity extends Activity implements OnClickListener 
 		
 		DataBaseHelper db;
     	db = new DataBaseHelper(this);
-    	LinearLayout button_layout = (LinearLayout)findViewById(R.id.cat_button_layout);
-    	int count = 0;
+    	//LinearLayout button_layout = (LinearLayout)findViewById(R.id.cat_button_layout);
+    	
     	cat_btn_list = db.getCategories();
-    	System.out.println(cat_btn_list);
-    	for(int i=0;i<cat_btn_list.size();i++){
+    	adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.button_row,cat_btn_list);
+    	setListAdapter(adapter);
+    	//System.out.println(cat_btn_list);
+    	/*for(int i=0;i<cat_btn_list.size();i++){
     		Button cat_name = new Button(this.getApplicationContext());
     		cat_name.setText(cat_btn_list.get(i));
     		cat_name.setId(count++);
     		cat_name.setWidth(150);
     		cat_name.setHeight(30);
-    		//cat_name.setBackgroundColor(color.);
+    		
     	    String cat = new String(cat_name.getText().toString());
     		cat_name.setOnClickListener(new View.OnClickListener() {
     		
@@ -73,11 +82,20 @@ public class ViewByCategoryActivity extends Activity implements OnClickListener 
 					startActivity(view_by_cat_intent);
 					
 				}
-			});
+			}); 
     		
     		button_layout.addView(cat_name);
     		
-    	}
+    	} */
+	}
+	
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+	    super.onListItemClick(l, v, position, id);
+	    Intent view_by_cat_intent = new Intent(ViewByCategoryActivity.this,ViewExpenseActivity.class );
+		view_by_cat_intent.putExtra("view_by", VIEW_BY_CAT_ID);
+		view_by_cat_intent.putExtra("cat_value",cat_btn_list.get(position).toString());
+		
+		startActivity(view_by_cat_intent);
 	}
 
 	@Override

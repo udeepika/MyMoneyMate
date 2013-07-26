@@ -13,8 +13,10 @@
         android:layout_marginBottom="15dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Add an Expense"
-        android:textSize="18dp" />
+        android:textStyle="bold"
+        android:text="Add  Expense"
+        android:textColor="#67204e"
+        android:textSize="22dp" />
 
     <Button
         android:id="@+id/show_calendar"
@@ -25,7 +27,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/amt_date"
         android:layout_toRightOf="@+id/amt_date"
-        
+        android:textColor="#67204e"
         android:background="@drawable/calendar_2"
         
          />
@@ -39,6 +41,7 @@
         android:layout_marginTop="28dp"
         android:layout_toRightOf="@+id/textView1"
         android:ems="10"
+        android:textColor="#67204e"
         android:hint="Amount" />
 
     <Button
@@ -48,7 +51,9 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="23dp"
-        android:background="#d9c3dd" 
+        android:background="@drawable/rounded" 
+        android:textColor="#67204e"
+        android:textStyle="bold"
         android:text="Add"/>
   		
   		
@@ -60,6 +65,8 @@
         android:layout_alignBaseline="@+id/amt_val"
         android:layout_alignBottom="@+id/amt_val"
         android:layout_toLeftOf="@+id/amt_val"
+        android:textColor="#67204e"
+        android:textStyle="bold"
         android:text="AMOUNT" />
 
     <TextView
@@ -69,6 +76,8 @@
         android:layout_alignBaseline="@+id/show_calendar"
         android:layout_alignBottom="@+id/show_calendar"
         android:layout_alignLeft="@+id/textView2"
+        android:textColor="#67204e"
+        android:textStyle="bold"
         android:text="DATE" />
 
     <EditText
@@ -78,7 +87,9 @@
         android:layout_alignLeft="@+id/amt_val"
         android:layout_below="@+id/amt_val"
         android:ems="10"
-        android:hint="MM/DD/YYYY"
+        android:hint="YYYY-MM-DD"
+        android:textColor="#67204e"
+        
         android:inputType="date" >
 
         <requestFocus />
@@ -92,7 +103,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/show_calendar"
         android:ems="10"
-        
         android:hint="Category" />
 
     <EditText
@@ -105,6 +115,7 @@
         android:layout_below="@+id/amt_cat"
         android:layout_marginTop="18dp"
         android:ems="10"
+        android:textColor="#67204e"
         android:inputType="textPostalAddress" />
 
     <TextView
@@ -114,6 +125,8 @@
         android:layout_alignLeft="@+id/add_btn"
         android:layout_alignTop="@+id/notes_txt"
         android:layout_marginTop="64dp"
+        android:textColor="#67204e"
+        android:textStyle="bold"
         android:text="NOTES" />
 
     <TextView
@@ -123,6 +136,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/amt_cat"
         android:layout_marginTop="23dp"
+        android:textColor="#67204e"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
         android:text="CATEGORY" />
 
     <Button
@@ -133,7 +149,9 @@
         android:layout_alignBottom="@+id/add_btn"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
-        android:background="#d9c3dd"
+        android:background="@drawable/rounded"
+        android:textColor="#67204e"
+        android:textStyle="bold"
         android:text="Clear" />
 
 </RelativeLayout>

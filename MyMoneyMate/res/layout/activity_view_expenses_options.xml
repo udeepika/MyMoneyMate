@@ -15,16 +15,27 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="View Expenses"
-        android:textSize="20sp" />
-"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+         />
+
+
         
         <Button
             android:id="@+id/ViewAll_btn"
             android:layout_width="fill_parent"
-            android:layout_height="50px"
+            android:layout_height="60px"
             android:text="View All" 
-            android:background="#d9c3dd"
-            
+            android:background="@drawable/rounded"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="#67204e"
             android:checked="false" />
         <TextView
         android:layout_width="283dp"
@@ -36,21 +47,26 @@
     	<Button
         	android:id="@+id/ViewByCat_btn"
         	android:layout_width="fill_parent"
-        	android:layout_height="50px"
-        	android:background="#df68f4"
+        	android:layout_height="60px"
+        	android:background="@drawable/rounded"
+        	android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="#67204e"
         	android:text="View By Category" />
     	<TextView
         android:layout_width="283dp"
         android:layout_height="10px"
-        android:gravity="center_horizontal"
-        
+        android:gravity="center_horizontal" 
         android:textSize="20sp" />
          	
     
    		<Button android:id="@+id/ViewByDate_btn"
         	android:layout_width="fill_parent"
-        	android:layout_height="50px"
-        	android:background="#d9c3dd"
+        	android:layout_height="60px"
+        	android:background="@drawable/rounded"
+        	android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="#67204e"
         	android:text="View By Date"/>
    		<TextView
         android:layout_width="283dp"
@@ -62,8 +78,11 @@
    		<Button
    		    android:id="@+id/CustomView_btn"
    		    android:layout_width="fill_parent"
-   		    android:layout_height="50px"
-   		    android:background="#df68f4"
+   		    android:layout_height="60px"
+   		    android:background="@drawable/rounded"
+   		    android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="#67204e"
    		    android:onClick="onRadioButtonClick"
    		    android:text="Customized View" />
 

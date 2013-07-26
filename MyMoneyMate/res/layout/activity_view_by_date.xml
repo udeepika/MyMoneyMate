@@ -14,16 +14,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Pick a date" />
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:textColor="#67204e"
+        android:textSize="24dp"
+        android:text="View By Date" />
 
     <Button
         android:id="@+id/view_for_date_btn"
         android:layout_width="match_parent"
-        android:layout_height="50px"
+        android:layout_height="60px"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#d9c3dd"
-       
+        android:background="@drawable/rounded"
+       	android:textStyle="bold"
+       	android:textColor="#67204e"
+       	android:textSize="20dp"
         android:text="View for this date" />
 
     <Button
@@ -42,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/show_calendar"
         android:layout_alignBottom="@+id/show_calendar"
+        android:layout_toLeftOf="@+id/show_calendar"
         android:layout_toRightOf="@+id/textView2"
         android:ems="10" />
 
@@ -52,6 +59,9 @@
         android:layout_alignBaseline="@+id/date_txt"
         android:layout_alignBottom="@+id/date_txt"
         android:layout_alignLeft="@+id/textView1"
+        android:textStyle="bold"
+        android:textColor="#67204e"
+        android:textSize="22dp"
         android:text="DATE" />
 
 </RelativeLayout>

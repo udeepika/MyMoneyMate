@@ -33,7 +33,7 @@
             android:gravity="left"
             android:text="Total Amount : "
             android:textSize="20sp"
-            android:textColor="#f00" 
+            android:textColor="#4f3edf" 
             android:textStyle="bold" />"
 
         <TextView
@@ -42,11 +42,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_toRightOf="@+id/tvHeader"
-            android:textColor="#302ecb" 
+            android:textStyle="bold"
+        	android:textColor="#67204e"
             android:layout_alignParentRight="true"
             android:gravity="left"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            />
 
     </LinearLayout>
 
@@ -54,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#ff0" >
+        android:background="#dce90f" >
 
 		<TextView
 		    android:id="@+id/Date"
@@ -62,6 +63,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="0dp"
 		    android:layout_weight="0.88"
+		    android:textColor="#0b4490"
 		    android:text="DATE" />
 
 		<TextView
@@ -70,6 +72,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="40dp"
 		    android:layout_weight="1"
+		    android:textColor="#0b4490"
 		    android:text="CATEGORY" />
 
 		<TextView
@@ -78,6 +81,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="20dp"
 		    android:layout_weight="1"
+		    android:textColor="#0b4490"
 		    android:text="AMOUNT" />
 
         <TextView 
@@ -85,6 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=""
+            android:textColor="#350b26"
             android:layout_marginLeft="7dp"
             />
 	</LinearLayout>
@@ -92,6 +97,7 @@
     <ListView android:id="@id/android:list" 
       android:layout_width="wrap_content" 
       android:layout_height="wrap_content"
-      android:background="#fbf2a3" />
+      android:textColor="#67204e"
+      android:background="#d9c3dd" />
 
 </LinearLayout>
