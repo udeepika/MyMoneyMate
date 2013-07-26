@@ -7,20 +7,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewByDateActivity" 
-    android:background="@drawable/bck_5" >"
+    android:background="@drawable/bck_5" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Pick a date" />
 
     <Button
         android:id="@+id/view_for_date_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50px"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:background="#d9c3dd"
+       
         android:text="View for this date" />
 
     <Button
@@ -31,7 +34,7 @@
         android:layout_alignRight="@+id/view_for_date_btn"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="62dp"
-        android:background="@drawable/calender_alt" />
+        android:background="@drawable/calendar_2" />
 
     <EditText
         android:id="@+id/date_txt"

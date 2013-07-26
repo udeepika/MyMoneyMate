@@ -8,8 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#e9eaf0"
-    tools:context=".CustomViewActivity" >
+    
+    tools:context=".CustomViewActivity"
+    android:background="@drawable/bck_5" >
 
     <TextView
         android:id="@+id/txt_cat"
@@ -30,7 +31,7 @@
         android:layout_alignLeft="@+id/cal2"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/from_txt"
-        android:background="@drawable/calendar1" />
+        android:background="@drawable/calendar_2" />
 
     <Button
         android:id="@+id/custom_view_btn"
@@ -39,7 +40,7 @@
         android:layout_alignLeft="@+id/from_txt"
         android:layout_alignParentBottom="true"
         android:layout_weight="1"
-        android:background="#eb6841"
+        android:background="#d9c3dd"
         android:minHeight="40dp"
         android:text="View Expenses"
         android:width="5dp" />
@@ -76,6 +77,7 @@
         android:layout_alignRight="@+id/txt_cat"
         android:background="#19d2b2"
         android:gravity="center"
+        android:textSize="20sp"
         android:text="Customized View" />
 
     <Spinner
@@ -84,7 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txt_cat"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/txt_cat" />
+        android:layout_below="@+id/txt_cat"
+         />
 
     <Button
         android:id="@+id/cal2"
@@ -95,7 +98,7 @@
         android:layout_alignRight="@+id/custom_view_btn"
         android:layout_alignTop="@+id/to_txt"
         android:layout_toRightOf="@+id/to_txt"
-        android:background="@drawable/calendar1" />
+        android:background="@drawable/calendar_2" />
 
     <TextView
         android:id="@+id/textView2"

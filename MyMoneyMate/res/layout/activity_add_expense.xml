@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bck_6"
+    android:background="@drawable/bck_5"
     android:orientation="vertical"
     tools:context=".AddExpense" >
 
@@ -48,7 +48,7 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="23dp"
-        android:background="#e5004f" 
+        android:background="#d9c3dd" 
         android:text="Add"/>
   		
   		
@@ -92,6 +92,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/show_calendar"
         android:ems="10"
+        
         android:hint="Category" />
 
     <EditText
@@ -132,7 +133,7 @@
         android:layout_alignBottom="@+id/add_btn"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
-        android:background="#e5004f"
+        android:background="#d9c3dd"
         android:text="Clear" />
 
 </RelativeLayout>

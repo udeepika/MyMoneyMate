@@ -21,26 +21,51 @@
         <Button
             android:id="@+id/ViewAll_btn"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50px"
             android:text="View All" 
+            android:background="#d9c3dd"
+            
             android:checked="false" />
+        <TextView
+        android:layout_width="283dp"
+        android:layout_height="10px"
+        android:gravity="center_horizontal"
+        
+        android:textSize="20sp" />
            
     	<Button
         	android:id="@+id/ViewByCat_btn"
         	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
+        	android:layout_height="50px"
+        	android:background="#df68f4"
         	android:text="View By Category" />
+    	<TextView
+        android:layout_width="283dp"
+        android:layout_height="10px"
+        android:gravity="center_horizontal"
+        
+        android:textSize="20sp" />
          	
     
    		<Button android:id="@+id/ViewByDate_btn"
         	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
+        	android:layout_height="50px"
+        	android:background="#d9c3dd"
         	android:text="View By Date"/>
-   		
-   		<Button android:id="@+id/CustomView_btn"
-        	android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:text="Customized View"
-         	android:onClick="onRadioButtonClick" />
+   		<TextView
+        android:layout_width="283dp"
+        android:layout_height="10px"
+        android:gravity="center_horizontal"
+        
+        android:textSize="20sp" />
+
+   		<Button
+   		    android:id="@+id/CustomView_btn"
+   		    android:layout_width="fill_parent"
+   		    android:layout_height="50px"
+   		    android:background="#df68f4"
+   		    android:onClick="onRadioButtonClick"
+   		    android:text="Customized View" />
+
 </LinearLayout>
 

@@ -26,10 +26,10 @@ public class ExpenseEntry {
 	int _id;
 	String date;
 	String category;
-	int amount;
+	float amount;
 	String notes;
 	
-	public ExpenseEntry(int _id,int amount,String category,String date,String notes){
+	public ExpenseEntry(int _id,float amount,String category,String date,String notes){
 		this._id = _id;
 		this.amount = amount;
 		this.category = category;
@@ -59,7 +59,7 @@ public class ExpenseEntry {
 	public String getCategory(){
 		return this.category;
 	}
-	public int getAmount(){
+	public float getAmount(){
 		return this.amount;
 	}
 	public void setAmount(int amount){

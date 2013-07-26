@@ -31,7 +31,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper{
 	
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_NAME = "Expense_table_1.db";
+	private static final String DATABASE_NAME = "Expense_table_3.db";
 	private static final String TABLE_EXPENSES = "Expenses";
 	
 	private static final String KEY_ID = "_id";
@@ -59,7 +59,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		String query = "CREATE TABLE " + TABLE_EXPENSES + "(" + KEY_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_CATEGORY + " TEXT, " +
-				KEY_AMOUNT + " INTEGER NOT NULL, " + KEY_DATE + " TEXT, " + NOTES + " TEXT);" ;
+				KEY_AMOUNT + " REAL NOT NULL, " + KEY_DATE + " TEXT, " + NOTES + " TEXT);" ;
 				db.execSQL(query);
 		
 		
@@ -106,7 +106,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
                 do {
                 	ExpenseEntry ee = new ExpenseEntry();
                 	ee._id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
-                	ee.amount = cursor.getInt(cursor.getColumnIndex(KEY_AMOUNT));
+                	ee.amount = cursor.getFloat(cursor.getColumnIndex(KEY_AMOUNT));
                 	ee.category = cursor.getString(cursor.getColumnIndex(KEY_CATEGORY));
                 	ee.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
                 	ee.notes = cursor.getString(cursor.getColumnIndex(NOTES));
@@ -162,7 +162,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
                 do {
                 	ExpenseEntry ee = new ExpenseEntry();
                 	ee._id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
-                	ee.amount = cursor.getInt(cursor.getColumnIndex(KEY_AMOUNT));
+                	ee.amount = cursor.getFloat(cursor.getColumnIndex(KEY_AMOUNT));
                 	ee.category = cursor.getString(cursor.getColumnIndex(KEY_CATEGORY));
                 	ee.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
                 	ee.notes = cursor.getString(cursor.getColumnIndex(NOTES));
@@ -186,7 +186,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
                 do {
                 	ExpenseEntry ee = new ExpenseEntry();
                 	ee._id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
-                	ee.amount = cursor.getInt(cursor.getColumnIndex(KEY_AMOUNT));
+                	ee.amount = cursor.getFloat(cursor.getColumnIndex(KEY_AMOUNT));
                 	ee.category = cursor.getString(cursor.getColumnIndex(KEY_CATEGORY));
                 	ee.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
                 	ee.notes = cursor.getString(cursor.getColumnIndex(NOTES));
@@ -204,7 +204,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getWritableDatabase();
 		if (cat.equals("All"))
 		cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE date BETWEEN '"
-	        		+from_date+"' AND '"+to_date+"'", null); 
+	        		+from_date+"' AND '"+to_date+"' GROUP BY category", null); 
 		
 		else
         cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE category="+"'"+cat+"' AND date BETWEEN '"
@@ -215,7 +215,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
                 do {
                 	ExpenseEntry ee = new ExpenseEntry();
                 	ee._id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
-                	ee.amount = cursor.getInt(cursor.getColumnIndex(KEY_AMOUNT));
+                	ee.amount = cursor.getFloat(cursor.getColumnIndex(KEY_AMOUNT));
                 	ee.category = cursor.getString(cursor.getColumnIndex(KEY_CATEGORY));
                 	ee.date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
                 	ee.notes = cursor.getString(cursor.getColumnIndex(NOTES));

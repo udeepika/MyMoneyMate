@@ -20,15 +20,19 @@
     <Button
         android:id="@+id/btn_add"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60px"
         android:layout_margin="5dp"
+        
+        android:background="#d9c3dd"
         android:text="Add Expense" />
 
     <Button
         android:id="@+id/btn_view"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60px"
         android:layout_margin="5dp"
+        
+        android:background="#d9c3dd"
         android:text="View Expenses" />
 
 </LinearLayout>

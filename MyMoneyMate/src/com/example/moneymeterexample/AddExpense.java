@@ -76,6 +76,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 		
 		boolean IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
 		String amount_val = getIntent().getStringExtra("amount");
+		
     	String date_val = getIntent().getStringExtra("date");
     	String category_val = getIntent().getStringExtra("category");
     	String notes_val = getIntent().getStringExtra("notes");
@@ -109,7 +110,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
         	System.out.println( notes_val + "" + category_val +"" + date_val);
         	amt.setText(amount_val);
         	date.setText(date_val);
-        	String date[] = date_val.split("/");
+        	String date[] = date_val.split("-");
         	mYear = Integer.parseInt(date[0]);
         	mMonth = Integer.parseInt(date[1])-1;
         	mDay = Integer.parseInt(date[2].trim());
@@ -152,8 +153,8 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
                 	date.setText(
                 	new StringBuilder()
                     // Appending 0 to month and day for the  format MM/DD/YYYY
-                    .append(mYear).append("/")
-                    .append(0).append(mMonth + 1).append("/")
+                    .append(mYear).append("-")
+                    .append(0).append(mMonth + 1).append("-")
                     .append(0).append(mDay)
                     .append(" ")); 
             			}
@@ -162,7 +163,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
             		date.setText(
             		// Appending 0 to month for the format MM/DD/YYYY
             		new StringBuilder()
-                    .append(mYear).append("/").append(0).append(mMonth + 1).append("/")
+                    .append(mYear).append("-").append(0).append(mMonth + 1).append("-")
                     .append(mDay)
                     .append(" "));
             		
@@ -172,7 +173,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
             		date.setText(
                             new StringBuilder()
                                     // Month is 0 based so add 1
-                                    .append(mYear).append("/").append(mMonth + 1).append("/")
+                                    .append(mYear).append("-").append(mMonth + 1).append("-")
                                     .append(mDay)
                                     .append(" "));
             		
@@ -233,7 +234,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				db.getWritableDatabase();
 				int rowid = db.getTotalRecords()+1;
 				ExpenseEntry ex = new ExpenseEntry();
-				ex.amount = Integer.parseInt(amt.getText().toString());
+				ex.amount = Float.parseFloat(amt.getText().toString());
 				ex.category = category.getSelectedItem().toString();
 				ex.date = date.getText().toString();
 				ex.notes = notes.getText().toString();
@@ -248,7 +249,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				DataBaseHelper db = new DataBaseHelper(getApplicationContext());
 				db.getWritableDatabase();
 				ExpenseEntry ex = new ExpenseEntry();
-				ex.amount = Integer.parseInt(amt.getText().toString());
+				ex.amount = Float.parseFloat(amt.getText().toString());
 				ex.category = category.getSelectedItem().toString();
 				ex.date = date.getText().toString();
 				ex.notes = notes.getText().toString();
@@ -383,7 +384,8 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 		DataBaseHelper db = new DataBaseHelper(getApplicationContext());
 		db.getWritableDatabase();
 		ExpenseEntry ex = new ExpenseEntry();
-		ex.amount = Integer.parseInt(amt.getText().toString());
+		
+		ex.amount = Float.parseFloat(amt.getText().toString());
 		ex.category = category.getSelectedItem().toString();
 		ex.date = date.getText().toString();
 		ex.notes = notes.getText().toString();

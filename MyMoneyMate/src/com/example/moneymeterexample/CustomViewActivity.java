@@ -148,8 +148,8 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	                	from_date.setText(
 	                	new StringBuilder()
 	                    // Appending 0 to month and day for the  format MM/DD/YYYY
-	                    .append(fromYear).append("/")
-	                    .append(0).append(fromMonth + 1).append("/")
+	                    .append(fromYear).append("-")
+	                    .append(0).append(fromMonth + 1).append("-")
 	                    .append(0).append(fromDay)
 	                    .append(" ")); 
 	            			}
@@ -158,7 +158,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	            	from_date.setText(
 	            		// Appending 0 to month for the format MM/DD/YYYY
 	            		new StringBuilder()
-	                    .append(fromYear).append("/").append(0).append(fromMonth + 1).append("/")
+	                    .append(fromYear).append("-").append(0).append(fromMonth + 1).append("-")
 	                    .append(fromDay)
 	                    .append(" "));
 	            		
@@ -168,7 +168,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	            		from_date.setText(
 	                            new StringBuilder()
 	                                    // Month is 0 based so add 1
-	                                    .append(fromYear).append("/").append(fromMonth + 1).append("/")
+	                                    .append(fromYear).append("-").append(fromMonth + 1).append("-")
 	                                    .append(fromDay)
 	                                    .append(" "));
 	            		
@@ -184,8 +184,8 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	                	to_date.setText(
 	                	new StringBuilder()
 	                    // Appending 0 to month and day for the  format MM/DD/YYYY
-	                    .append(toYear).append("/")
-	                    .append(0).append(toMonth + 1).append("/")
+	                    .append(toYear).append("-")
+	                    .append(0).append(toMonth + 1).append("-")
 	                    .append(0).append(toDay)
 	                    .append(" ")); 
 	            			}
@@ -194,7 +194,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	            	to_date.setText(
 	            		// Appending 0 to month for the format MM/DD/YYYY
 	            		new StringBuilder()
-	                    .append(toYear).append("/").append(0).append(toMonth + 1).append("/")
+	                    .append(toYear).append("-").append(0).append(toMonth + 1).append("-")
 	                    .append(toDay)
 	                    .append(" "));
 	            		
@@ -204,7 +204,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	            		to_date.setText(
 	                            new StringBuilder()
 	                                    // Month is 0 based so add 1
-	                                    .append(toYear).append("/").append(toMonth + 1).append("/")
+	                                    .append(toYear).append("-").append(toMonth + 1).append("-")
 	                                    .append(toDay)
 	                                    .append(" "));
 	            		

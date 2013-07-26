@@ -25,6 +25,7 @@ package com.example.moneymeterexample;
 
 import java.util.ArrayList;
 
+import android.R.color;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -57,6 +58,7 @@ public class ViewByCategoryActivity extends Activity implements OnClickListener 
     		cat_name.setId(count++);
     		cat_name.setWidth(150);
     		cat_name.setHeight(30);
+    		//cat_name.setBackgroundColor(color.);
     	    String cat = new String(cat_name.getText().toString());
     		cat_name.setOnClickListener(new View.OnClickListener() {
     		
