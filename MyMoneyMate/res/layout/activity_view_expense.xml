@@ -31,7 +31,7 @@
             android:layout_alignParentLeft="true"
             android:layout_weight="0.16"
             android:gravity="left"
-            android:text="Total Amount : "
+            android:text="Total Amount($): "
             android:textSize="20sp"
             android:textColor="#4f3edf" 
             android:textStyle="bold" />"

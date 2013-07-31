@@ -32,7 +32,7 @@
         android:layout_alignLeft="@+id/cal2"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/from_txt"
-        android:background="@drawable/calendar_2" />
+        android:background="@drawable/cal" />
 
     <Button
         android:id="@+id/custom_view_btn"
@@ -48,17 +48,6 @@
         android:textColor="#67204e"
         android:textSize="22dp"
         android:width="5dp" />
-
-    <EditText
-        android:id="@+id/from_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:focusable="false"
-        android:textColor="#67204e"
-        android:inputType="date" />
 
     <EditText
         android:id="@+id/to_txt"
@@ -81,7 +70,7 @@
         android:layout_alignLeft="@+id/txt_cat"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/txt_cat"
-        android:background="#19d2b2"
+        
         android:gravity="center"
         android:textSize="22dp"
         android:textColor="#67204e"
@@ -106,7 +95,7 @@
         android:layout_alignRight="@+id/custom_view_btn"
         android:layout_alignTop="@+id/to_txt"
         android:layout_toRightOf="@+id/to_txt"
-        android:background="@drawable/calendar_2" />
+        android:background="@drawable/cal" />
 
     <TextView
         android:id="@+id/textView2"
@@ -120,16 +109,50 @@
         android:textColor="#67204e"
         android:text="To" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignTop="@+id/textView3"
+        android:background="@drawable/home" />
+
+    <Button
+        android:id="@+id/pie_chart_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/custom_view_btn"
+        android:layout_alignLeft="@+id/custom_view_btn"
+        android:layout_alignRight="@+id/custom_view_btn"
+        android:text="Pie Chart" 
+        android:textStyle="bold"
+        android:textColor="#67204e"
+        android:textSize="22dp"
+        android:height="60px"
+        android:background="@drawable/rounded"
+        android:visibility="visible"/>
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/cal1"
         android:layout_alignLeft="@+id/spinner1"
-        android:layout_alignRight="@+id/spinner1"
+        android:layout_below="@+id/spinner1"
+        android:layout_marginTop="22dp"
         android:background="#eb6841"
+        android:text="From"
         android:textColor="#67204e"
-        android:textStyle="bold"
-        android:text="From" />
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/from_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="date"
+        android:textColor="#67204e" />
 
 </RelativeLayout>

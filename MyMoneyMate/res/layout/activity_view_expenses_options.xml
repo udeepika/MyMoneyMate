@@ -85,6 +85,23 @@
             android:textColor="#67204e"
    		    android:onClick="onRadioButtonClick"
    		    android:text="Customized View" />
+   		<TextView
+        android:layout_width="283dp"
+        android:layout_height="10px"
+        android:gravity="center_horizontal"
+        
+        android:textSize="20sp" />
+
+   		<Button
+   		    android:id="@+id/view_chart"
+   		    android:layout_width="fill_parent"
+   		    android:layout_height="60px"
+   		    android:background="@drawable/rounded"
+   		    android:onClick="onRadioButtonClick"
+   		    android:text="View Chart"
+   		    android:textColor="#67204e"
+   		    android:textSize="22dp"
+   		    android:textStyle="bold" />
 
 </LinearLayout>
 

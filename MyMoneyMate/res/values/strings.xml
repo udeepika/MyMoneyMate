@@ -12,5 +12,6 @@
     <string name="title_activity_view_by_date">ViewByDateActivity</string>
     <string name="title_activity_view_by_category">ViewByCategoryActivity</string>
     <string name="title_activity_custom_view">CustomViewActivity</string>
+    <string name="title_activity_achart_engine_pie_chart">AChartEnginePieChartActivity</string>
 
 </resources>

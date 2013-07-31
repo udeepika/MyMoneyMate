@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()){
 		case R.id.btn_add:
-			Intent addIntent = new Intent(MainActivity.this,AddExpense.class);
+			Intent addIntent = new Intent(MainActivity.this,AddExpenseActivity.class);
 			startActivity(addIntent);
 			break;
 		case R.id.btn_view:
@@ -67,5 +67,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		}
 		
 	}
+	
+	
 
 }

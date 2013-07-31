@@ -32,7 +32,7 @@ import android.widget.RadioGroup;
 
 public class ViewExpensesOptionsActivity extends Activity implements OnClickListener{
 	
-	Button view_all, view_by_date, view_by_cat, view_by_month, view_custom;
+	Button view_all, view_by_date, view_by_cat, view_by_month, view_custom,view_chart;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,8 @@ public class ViewExpensesOptionsActivity extends Activity implements OnClickList
 		view_by_date.setOnClickListener(this);
 		Button view_by_cat = (Button)findViewById(R.id.ViewByCat_btn);
 		view_by_cat.setOnClickListener(this);
-		
+		Button view_chart = (Button)findViewById(R.id.view_chart);
+		view_chart.setOnClickListener(this);
 		Button view_custom = (Button) findViewById(R.id.CustomView_btn);
 		view_custom.setOnClickListener(this);
 		
@@ -86,6 +87,10 @@ public class ViewExpensesOptionsActivity extends Activity implements OnClickList
 	    Intent viewCustomIntent = new Intent(ViewExpensesOptionsActivity.this,CustomViewActivity.class);
 	    startActivity(viewCustomIntent);
 	    break;
+	    
+	    case R.id.view_chart:
+	    	Intent viewChartIntent = new Intent(ViewExpensesOptionsActivity.this,AChartEnginePieChartActivity.class);
+		    startActivity(viewChartIntent);
 		}
 	}
 	
@@ -94,4 +99,9 @@ public class ViewExpensesOptionsActivity extends Activity implements OnClickList
         android.os.Process.killProcess(android.os.Process.myPid());
     }   	
 
+	public void onBackPressed(){
+		 
+		Intent mainActivity = new Intent(ViewExpensesOptionsActivity.this,MainActivity.class);
+		startActivity(mainActivity);
+	}
 }

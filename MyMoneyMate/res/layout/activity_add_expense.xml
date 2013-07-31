@@ -4,19 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/bck_5"
     android:orientation="vertical"
-    tools:context=".AddExpense" >
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:text="Add  Expense"
-        android:textColor="#67204e"
-        android:textSize="22dp" />
+    tools:context=".AddExpenseActivity" >
 
     <Button
         android:id="@+id/show_calendar"
@@ -27,10 +15,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/amt_date"
         android:layout_toRightOf="@+id/amt_date"
-        android:textColor="#67204e"
-        android:background="@drawable/calendar_2"
-        
-         />
+        android:background="@drawable/cal"
+        android:textColor="#67204e" />
 
     <EditText
         android:id="@+id/amt_val"
@@ -41,8 +27,8 @@
         android:layout_marginTop="28dp"
         android:layout_toRightOf="@+id/textView1"
         android:ems="10"
-        android:textColor="#67204e"
-        android:hint="Amount" />
+        android:hint="Amount"
+        android:textColor="#67204e" />
 
     <Button
         android:id="@+id/add_btn"
@@ -51,12 +37,10 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="23dp"
-        android:background="@drawable/rounded" 
+        android:background="@drawable/rounded"
+        android:text="Add"
         android:textColor="#67204e"
-        android:textStyle="bold"
-        android:text="Add"/>
-  		
-  		
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView2"
@@ -65,9 +49,9 @@
         android:layout_alignBaseline="@+id/amt_val"
         android:layout_alignBottom="@+id/amt_val"
         android:layout_toLeftOf="@+id/amt_val"
+        android:text="AMOUNT"
         android:textColor="#67204e"
-        android:textStyle="bold"
-        android:text="AMOUNT" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView3"
@@ -76,9 +60,9 @@
         android:layout_alignBaseline="@+id/show_calendar"
         android:layout_alignBottom="@+id/show_calendar"
         android:layout_alignLeft="@+id/textView2"
+        android:text="DATE"
         android:textColor="#67204e"
-        android:textStyle="bold"
-        android:text="DATE" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/amt_date"
@@ -88,9 +72,8 @@
         android:layout_below="@+id/amt_val"
         android:ems="10"
         android:hint="YYYY-MM-DD"
-        android:textColor="#67204e"
-        
-        android:inputType="date" >
+        android:inputType="date"
+        android:textColor="#67204e" >
 
         <requestFocus />
     </EditText>
@@ -115,19 +98,19 @@
         android:layout_below="@+id/amt_cat"
         android:layout_marginTop="18dp"
         android:ems="10"
-        android:textColor="#67204e"
-        android:inputType="textPostalAddress" />
+        android:inputType="textPostalAddress"
+        android:textColor="#67204e" />
 
     <TextView
-        
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/add_btn"
         android:layout_alignTop="@+id/notes_txt"
         android:layout_marginTop="64dp"
+        android:text="NOTES"
         android:textColor="#67204e"
-        android:textStyle="bold"
-        android:text="NOTES" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView1"
@@ -135,11 +118,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/amt_cat"
-        android:layout_marginTop="23dp"
-        android:textColor="#67204e"
-        android:textStyle="bold"
         android:layout_marginLeft="5dp"
-        android:text="CATEGORY" />
+        android:layout_marginTop="23dp"
+        android:text="CATEGORY"
+        android:textColor="#67204e"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/clear_btn"
@@ -150,8 +133,21 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:background="@drawable/rounded"
+        android:text="Clear"
         android:textColor="#67204e"
-        android:textStyle="bold"
-        android:text="Clear" />
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
+        android:gravity="center"
+        android:text="Add  Expense"
+        android:textColor="#67204e"
+        android:textSize="22dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

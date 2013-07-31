@@ -28,6 +28,8 @@ import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.app.ListActivity;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import android.app.Activity;
@@ -49,6 +51,7 @@ import android.util.Log;
 import android.widget.Toast;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
+import java.util.*;
 
 public class ViewExpenseActivity extends ListActivity implements OnClickListener{
 	
@@ -59,7 +62,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 	TextView txt_id,total;
 	Button back_btn;
 	int view_by;
-	
+	DecimalFormat format = new DecimalFormat("###.##");
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -141,7 +144,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		    
 		}
 		//String totalVal = new String("Total Amount Spent : "+);
-		total.setText(String.valueOf(sum));
+		total.setText(String.valueOf(format.format(sum)));
 		db.close();
 		
 		
@@ -172,8 +175,9 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 	    super.onListItemClick(l, v, position, id);
 	    System.out.println("The item clicked is ");
-	    Intent edit_intent = new Intent(getApplicationContext(),AddExpense.class);
+	    Intent edit_intent = new Intent(getApplicationContext(),AddExpenseActivity.class);
 	    edit_intent.putExtra("IS_ADD",false);
+	    edit_intent.putExtra("view_by", view_by);
 	    edit_intent.putExtra("amount", list.get(position).get("amount"));
 	    System.out.println("The amount is "+list.get(position).get("amount") );
 	    edit_intent.putExtra("date", list.get(position).get("date"));
@@ -191,7 +195,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		String date = getIntent().getExtras().getString("date_val");
 		exp_list = db.getExpensesByDate(date);
 		float sum = 0;
-		System.out.println("rwached bydate function");
+		
 		for(int i =0;i<exp_list.size();i++){
 			Button b = new Button(this);
 			HashMap<String,String> temp = new HashMap<String,String>();
@@ -207,7 +211,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		}
 		
 		
-		total.setText(String.valueOf(sum));
+		total.setText(String.valueOf(format.format(sum)));
 		db.close();
 		
 	}
@@ -219,7 +223,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		String cat_value = getIntent().getExtras().getString("cat_value");
 		exp_list = db.getExpenseByCategory(cat_value);
 		float sum = 0;
-		System.out.println("reached bycat function");
+		
 		for(int i =0;i<exp_list.size();i++){
 			Button b = new Button(this);
 			HashMap<String,String> temp = new HashMap<String,String>();
@@ -234,7 +238,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		    
 		}
 		
-		total.setText(String.valueOf(sum));
+		total.setText(String.valueOf(format.format(sum)));
 		db.close();
 		
 	}
@@ -248,7 +252,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		String to_date = getIntent().getExtras().getString("to_date");
 		exp_list = db.getCustomExpense(cat_value,from_date,to_date);
 		float sum = 0;
-		System.out.println("reached bycat function");
+		
 		for(int i =0;i<exp_list.size();i++){
 			Button b = new Button(this);
 			HashMap<String,String> temp = new HashMap<String,String>();
@@ -263,8 +267,16 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		    
 		}
 		
-		total.setText(String.valueOf(sum));
+		total.setText(String.valueOf(format.format(sum)));
 		db.close();
+		
+	}
+	
+	public void onBackPressed(){
+		 
+		Intent mainActivityIntent = new Intent(ViewExpenseActivity.this,ViewExpensesOptionsActivity.class);
+		finish();
+		startActivity(mainActivityIntent);
 		
 	}
 

@@ -36,6 +36,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -52,7 +53,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
-public class AddExpense extends Activity implements OnClickListener,OnItemSelectedListener{
+public class AddExpenseActivity extends Activity implements OnClickListener,OnItemSelectedListener{
 	
 	private Button addExpense_btn,clear_button;
 	Button show_cal;
@@ -67,16 +68,16 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 	static final int DELETE_CONFIRM_ID = 200;
 	public static boolean IS_ADD = true;
 	static ArrayList<String> cat_list ;
-	public  int row_id;
-	boolean check = false;
+	public  int row_id,view_by;
+	//boolean check = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_expense);
 		
-		boolean IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
+		IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
 		String amount_val = getIntent().getStringExtra("amount");
-		
+		int view_by = getIntent().getIntExtra("view_by", 0);
     	String date_val = getIntent().getStringExtra("date");
     	String category_val = getIntent().getStringExtra("category");
     	String notes_val = getIntent().getStringExtra("notes");
@@ -225,9 +226,9 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				
 				if(amt.getText().toString().equals("")||date.getText().toString().equals("")||category.getSelectedItem().equals("No Selection")){
 				
-				Toast.makeText(AddExpense.this, "Please add values...", Toast.LENGTH_LONG).show();
+				Toast.makeText(AddExpenseActivity.this, "Please add values...", Toast.LENGTH_LONG).show();
 				if(category.getSelectedItem().equals("No Selection"))
-					Toast.makeText(AddExpense.this, "Please select a category..", Toast.LENGTH_LONG).show();
+					Toast.makeText(AddExpenseActivity.this, "Please select a category..", Toast.LENGTH_LONG).show();
 				}
 				else{
 				DataBaseHelper db = new DataBaseHelper(getApplicationContext());			
@@ -241,7 +242,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				ex._id = rowid;
 				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ ex._id);
 				db.addExpenseEntry(ex);
-				Toast.makeText(AddExpense.this, "Record added successfully!!", Toast.LENGTH_LONG).show();
+				Toast.makeText(AddExpenseActivity.this, "Record added successfully!!", Toast.LENGTH_LONG).show();
 				db.close();
 				}
 				}	
@@ -256,7 +257,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 				ex._id = row_id;
 				Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ "" + ex._id);
 				if (db.editExpenseEntry(ex) > 0)
-				Toast.makeText(AddExpense.this, "Record updated successfully!!", Toast.LENGTH_LONG).show();
+				Toast.makeText(AddExpenseActivity.this, "Record updated successfully!!", Toast.LENGTH_LONG).show();
 				db.close();
 			}
 				 break;
@@ -283,7 +284,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 	
 
 	protected Dialog onCreateDialog(int id) {
-		IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
+		//IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
 		switch (id) {
 		case DATE_DIALOG_ID:
 				return new DatePickerDialog(this,
@@ -367,7 +368,7 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 			if(category_val.equals("New..."))
 			{
 				
-				System.out.println("Value of check is"+ check);
+				//System.out.println("Value of check is"+ check);
 				
 				showDialog(NEW_CATEGORY_ID);
 				
@@ -392,7 +393,24 @@ public class AddExpense extends Activity implements OnClickListener,OnItemSelect
 		ex._id = row_id;
 		Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ "" + ex._id);
 		if(db.deleteRecord(ex))
-			Toast.makeText(AddExpense.this, "Record Deleted", Toast.LENGTH_LONG).show(); 
+			Toast.makeText(AddExpenseActivity.this, "Record Deleted", Toast.LENGTH_LONG).show(); 
 		db.close(); 
 	}
+	
+	/*public void onBackPressed(){
+		if(IS_ADD){
+			Intent viewExpenseIntent = new Intent(AddExpenseActivity.this,MainActivity.class);
+		//viewExpenseIntent.putExtra("view_by", view_by);
+			finish();
+			startActivity(viewExpenseIntent);}
+		else
+		{ 
+			Intent viewExpenseIntent = new Intent(AddExpenseActivity.this,ViewExpenseActivity.class);
+			System.out.println("The value of view_by is :"+view_by);
+			viewExpenseIntent.putExtra("view_by", view_by);
+			finish();
+			
+			startActivity(viewExpenseIntent);
+		}
+	}   */
     }

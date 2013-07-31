@@ -59,7 +59,7 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				showDialog(AddExpense.DATE_DIALOG_ID);
+				showDialog(AddExpenseActivity.DATE_DIALOG_ID);
 			}
 		});
 		
@@ -140,7 +140,7 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 	            
 	   protected Dialog onCreateDialog(int id) {
 		   switch (id) {
-			case AddExpense.DATE_DIALOG_ID:
+			case AddExpenseActivity.DATE_DIALOG_ID:
 					return new DatePickerDialog(this,
 	                    pDateSetListener,
 	                    mYear, mMonth, mDay);

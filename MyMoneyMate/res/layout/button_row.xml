@@ -7,7 +7,7 @@
      android:layout_weight="1"
      android:textSize="20sp"
      android:textColor="#67204e"
-     
+     android:textStyle="bold"
      />
 
 

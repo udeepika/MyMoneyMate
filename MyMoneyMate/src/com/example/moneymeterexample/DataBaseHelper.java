@@ -20,6 +20,7 @@ MyMoneyMate - An android application to keep a record of your expenses.
 package com.example.moneymeterexample;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -31,7 +32,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper{
 	
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_NAME = "Expense_table_3.db";
+	private static final String DATABASE_NAME = "Expense_table_5.db";
 	private static final String TABLE_EXPENSES = "Expenses";
 	
 	private static final String KEY_ID = "_id";
@@ -41,6 +42,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	private static final String NOTES = "notes";
 	Context c;
     private ArrayList<ExpenseEntry> exList = new ArrayList<ExpenseEntry>();
+    private HashMap<String,Float> amt_by_category = new HashMap<String,Float>();
     private ArrayList<String> cat_list = new ArrayList<String>();    
     public DataBaseHelper(Context context) {
 		super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -59,7 +61,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		String query = "CREATE TABLE " + TABLE_EXPENSES + "(" + KEY_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_CATEGORY + " TEXT, " +
-				KEY_AMOUNT + " REAL NOT NULL, " + KEY_DATE + " TEXT, " + NOTES + " TEXT);" ;
+				KEY_AMOUNT + " REAL NOT NULL, " + KEY_DATE + " INTEGER, " + NOTES + " TEXT);" ;
 				db.execSQL(query);
 		
 		
@@ -154,6 +156,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	
 	ArrayList<ExpenseEntry> getExpensesByDate(String date_val){
 		exList.clear();
+		//Integer date = Integer.parseInt(date_val.replaceAll("-", ""));
 		SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE date="+"'"+date_val+"'", null);
         System.out.println("In DB function dat val is "+ date_val);
@@ -201,10 +204,12 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 	public ArrayList<ExpenseEntry> getCustomExpense(String cat,String from_date,String to_date){
 		exList.clear();
 		Cursor cursor;
+		//Integer from = Integer.parseInt(from_date.replaceAll("-", ""));
+		//Integer to  = Integer.parseInt(to_date.replaceAll("-", ""));
 		SQLiteDatabase db = this.getWritableDatabase();
 		if (cat.equals("All"))
 		cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE date BETWEEN '"
-	        		+from_date+"' AND '"+to_date+"' GROUP BY category", null); 
+	        		+from_date+"' AND '"+to_date+"' ", null); 
 		
 		else
         cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE category="+"'"+cat+"' AND date BETWEEN '"
@@ -226,6 +231,51 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         cursor.close();
         db.close();
         return exList;
+}
+	
+	public HashMap<String,Float> getChartBetweenDates(String from_date,String to_date){
+		//exList.clear();
+		//float[] amount_by_category = null;
+		//Integer from = Integer.parseInt(from_date.replaceAll("-", ""));
+		//Integer to = Integer.parseInt(to_date.replaceAll("-", ""));
+		int i =0 ;
+		SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT category, SUM(amount) FROM " + TABLE_EXPENSES + " WHERE date BETWEEN '"+
+		from_date+"' AND '"+to_date+"' GROUP BY category ", null);
+       
+        if(cursor.getCount()!=0){
+        	if (cursor.moveToFirst()) {
+                do {
+                	amt_by_category.put(cursor.getString(0), cursor.getFloat(1));
+                	i++;
+                }while(cursor.moveToNext());
+        }
+	}
+        cursor.close();
+        db.close();
+        System.out.println(amt_by_category);
+        return amt_by_category;
+}
+	public HashMap<String,Float> getExpenseforChart(){
+		//exList.clear();
+		//float[] amount_by_category = null;
+		int i =0 ;
+		SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT category, SUM(amount) FROM " + TABLE_EXPENSES  
+		+" GROUP BY category ", null);
+       
+        if(cursor.getCount()!=0){
+        	if (cursor.moveToFirst()) {
+                do {
+                	amt_by_category.put(cursor.getString(0), cursor.getFloat(1));
+                	i++;
+                }while(cursor.moveToNext());
+        }
+	}
+        cursor.close();
+        db.close();
+        System.out.println(amt_by_category);
+        return amt_by_category;
 }
 	
 }

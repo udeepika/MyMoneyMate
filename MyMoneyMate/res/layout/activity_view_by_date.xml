@@ -40,7 +40,7 @@
         android:layout_alignRight="@+id/view_for_date_btn"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="62dp"
-        android:background="@drawable/calendar_2" />
+        android:background="@drawable/cal" />
 
     <EditText
         android:id="@+id/date_txt"

@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.moneymeterexample.AddExpense"
+            android:name="com.example.moneymeterexample.AddExpenseActivity"
             android:label="@string/title_activity_add_expense" >
         </activity>
         <activity
@@ -57,6 +57,10 @@
         <activity
             android:name="com.example.moneymeterexample.CustomViewActivity"
             android:label="@string/title_activity_custom_view" >
+        </activity>
+        <activity
+            android:name="com.example.moneymeterexample.AChartEnginePieChartActivity"
+            android:label="@string/title_activity_achart_engine_pie_chart" >
         </activity>
     </application>
 

@@ -111,5 +111,9 @@ public class ViewByCategoryActivity extends ListActivity implements OnClickListe
 		
 	}
 	
-
+	public void onBackPressed(){
+		Intent viewOptionsIntent = new Intent(ViewByCategoryActivity.this,ViewExpensesOptionsActivity.class);
+		finish();
+		startActivity(viewOptionsIntent);
+	}
 }

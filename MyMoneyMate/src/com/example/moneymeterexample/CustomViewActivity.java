@@ -43,7 +43,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	
 	static EditText from_date,to_date;
 	Spinner category;
-	Button from_btn,to_btn,view_btn;
+	Button from_btn,to_btn,view_btn,view_chart;
 	private int fromYear,toYear;
 	private int fromMonth,toMonth;
 	private int fromDay,toDay; 
@@ -271,5 +271,11 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
         	((DatePickerDialog) dialog).updateDate(toYear, toMonth, toDay);
             break;
         }
-    }    
+    } 
+	
+	public void onBackPressed(){
+		Intent viewOptionsIntent = new Intent(CustomViewActivity.this,ViewExpensesOptionsActivity.class);
+		startActivity(viewOptionsIntent);
+		
+	}
 }
