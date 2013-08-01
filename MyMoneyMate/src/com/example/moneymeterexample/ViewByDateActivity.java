@@ -1,21 +1,23 @@
 /* *************************************************************************************
-Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
+* Copyright © 2013 Deepika Punyamurtula
+* This program is free software: you can redistribute it and/or modify it under 
+* the terms of the GNU General Public License as published by the Free Software Foundation, 
+* either version 3 of the License, or (at your option) any later version.
 
-This program is free software: you can redistribute it and/or modify it under 
-the terms of the GNU General Public License as published by the Free Software Foundation, 
-either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program. 
-If not, see http://www.gnu.org/licenses/.
-
-Author - Deepika Punyamurtula
-email: udeepika@pdx.edu
-
-MyMoneyMate - An android application to keep a record of your expenses.
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+* See the GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License along with this program.
+* If not, see http://www.gnu.org/licenses/.
+* Please see the file "License" in this distribution for license terms. 
+* Below is the link to the License file:
+* https://github.com/udeepika/MyMoneyMate/blob/master/License.txt
+*
+* Author - Deepika Punyamurtula
+* email: udeepika@pdx.edu
+* Link to repository- https://github.com/udeepika/MyMoneyMate
 
 ***************************************************************************************** */
 
@@ -55,22 +57,22 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 		view_btn.setOnClickListener(this);
 		show_cal = (Button) findViewById(R.id.show_calendar);
 		show_cal.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				showDialog(AddExpenseActivity.DATE_DIALOG_ID);
 			}
 		});
-		
+
 		final Calendar cal = Calendar.getInstance();
 		mYear = cal.get(Calendar.YEAR);
-        mMonth = cal.get(Calendar.MONTH);
-        mDay = cal.get(Calendar.DAY_OF_MONTH);
- 
-        /** Display the current date in the TextView */
-        updateDisplay();
-		
+		mMonth = cal.get(Calendar.MONTH);
+		mDay = cal.get(Calendar.DAY_OF_MONTH);
+
+		/** Display the current date in the TextView */
+		updateDisplay();
+
 	}
 
 	@Override
@@ -83,82 +85,82 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		// TODO Auto-generated method stub
-		
-		
+
+
 	}
-	
+
 	private DatePickerDialog.OnDateSetListener pDateSetListener =
-	        new DatePickerDialog.OnDateSetListener() {
-	 
-	            public void onDateSet(DatePicker view, int year,
-	                                  int monthOfYear, int dayOfMonth) {
-	                    mYear = year;
-	                    mMonth = monthOfYear;
-	                    mDay = dayOfMonth;
-	                    
-	                    updateDisplay();
-	                    displayToast();
-	                }
-	            };
-	    private void updateDisplay() {
-	         if(mMonth <9){
-	            		
-	            if(mDay < 9){
-	                	date.setText(
-	                	new StringBuilder()
-	                    // Appending 0 to month and day for the  format MM/DD/YYYY
-	                    .append(mYear).append("-").append(0).append(mMonth + 1).append("-")
-	                    .append(0).append(mDay)
-	                    .append(" ")); 
-	            			}
-	            
-	            else     	{
-	            		date.setText(
-	            		// Appending 0 to month for the format MM/DD/YYYY
-	            		new StringBuilder()
-	                    .append(mYear).append("-").append(0).append(mMonth + 1).append("-")
-	                    .append(mDay)
-	                    .append(" "));
-	            		
-	            	}
-	            }
-	            	else{
-	            		date.setText(
-	                            new StringBuilder()
-	                                    // Month is 0 based so add 1
-	                                    .append(mYear).append("-").append(mMonth + 1).append("-")
-	                                    .append(mDay)
-	                                    .append(" "));
-	            		
-	            	}
-	            	
-	            }
-	   private void displayToast() {
-	            Toast.makeText(this, new StringBuilder().append("Date choosen is ").append(date.getText()),  Toast.LENGTH_SHORT).show();
-	                     
-	            }
-	            
-	   protected Dialog onCreateDialog(int id) {
-		   switch (id) {
-			case AddExpenseActivity.DATE_DIALOG_ID:
-					return new DatePickerDialog(this,
-	                    pDateSetListener,
-	                    mYear, mMonth, mDay);
-		   }
-		   
-		   return null;
-		   
-	   }
-	   
-	   public void onClick(View v) {
-		   if(v.getId()==R.id.view_for_date_btn){
-			   Intent view_intent = new Intent(ViewByDateActivity.this,ViewExpenseActivity.class );
-			   //view_intent.putExtra("FROM", "date");
-			   view_intent.putExtra("date_val",date.getText().toString());
-			   view_intent.putExtra("view_by", VIEW_BY_DATE_ID);
-			   startActivity(view_intent);
-			   
-		   }
-}
+			new DatePickerDialog.OnDateSetListener() {
+
+		public void onDateSet(DatePicker view, int year,
+				int monthOfYear, int dayOfMonth) {
+			mYear = year;
+			mMonth = monthOfYear;
+			mDay = dayOfMonth;
+
+			updateDisplay();
+			displayToast();
+		}
+	};
+	private void updateDisplay() {
+		if(mMonth <9){
+
+			if(mDay < 9){
+				date.setText(
+						new StringBuilder()
+						// Appending 0 to month and day for the  format MM/DD/YYYY
+						.append(mYear).append("-").append(0).append(mMonth + 1).append("-")
+						.append(0).append(mDay)
+						.append(" ")); 
+			}
+
+			else     	{
+				date.setText(
+						// Appending 0 to month for the format MM/DD/YYYY
+						new StringBuilder()
+						.append(mYear).append("-").append(0).append(mMonth + 1).append("-")
+						.append(mDay)
+						.append(" "));
+
+			}
+		}
+		else{
+			date.setText(
+					new StringBuilder()
+					// Month is 0 based so add 1
+					.append(mYear).append("-").append(mMonth + 1).append("-")
+					.append(mDay)
+					.append(" "));
+
+		}
+
+	}
+	private void displayToast() {
+		Toast.makeText(this, new StringBuilder().append("Date choosen is ").append(date.getText()),  Toast.LENGTH_SHORT).show();
+
+	}
+
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case AddExpenseActivity.DATE_DIALOG_ID:
+			return new DatePickerDialog(this,
+					pDateSetListener,
+					mYear, mMonth, mDay);
+		}
+
+		return null;
+
+	}
+
+	public void onClick(View v) {
+		if(v.getId()==R.id.view_for_date_btn){
+			Intent view_intent = new Intent(ViewByDateActivity.this,ViewExpenseActivity.class );
+			//view_intent.putExtra("FROM", "date");
+			view_intent.putExtra("date_val",date.getText().toString());
+			view_intent.putExtra("view_by", VIEW_BY_DATE_ID);
+			startActivity(view_intent);
+
+		}
+	}
 
 }
