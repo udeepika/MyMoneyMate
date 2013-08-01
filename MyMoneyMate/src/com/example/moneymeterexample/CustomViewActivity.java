@@ -45,7 +45,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	
 	static EditText from_date,to_date;
 	Spinner category;
-	Button from_btn,to_btn,view_btn,view_chart;
+	Button from_btn,to_btn,view_btn,view_chart_btn;
 	private int fromYear,toYear;
 	private int fromMonth,toMonth;
 	private int fromDay,toDay; 
@@ -77,7 +77,8 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
         toMonth = cal_to.get(Calendar.MONTH);
         fromDay = cal_from.get(Calendar.DAY_OF_MONTH);
         toDay = cal_to.get(Calendar.DAY_OF_MONTH);
- 
+        view_chart_btn = (Button)findViewById(R.id.pie_chart_btn);
+        view_chart_btn.setOnClickListener(this);
         /** Display the current date in the TextView */
         updateFromDisplay();
         updateToDisplay();
@@ -110,6 +111,13 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 			viewExpenseIntent.putExtra("to_date", to_date.getText().toString());
 			startActivity(viewExpenseIntent);
 			break;
+			
+		case R.id.pie_chart_btn:
+			Intent view_chart_intent = new Intent(CustomViewActivity.this,AChartEnginePieChartActivity.class);
+			view_chart_intent.putExtra("from_date", from_date.getText().toString());
+			view_chart_intent.putExtra("to_date", to_date.getText().toString());
+			view_chart_intent.putExtra("is_custom", true);
+			startActivity(view_chart_intent);
 		}
 		
 	}
@@ -220,6 +228,9 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
 		category_val = parent.getItemAtPosition(position).toString();	
+		if(category_val.equals("All")){
+			view_chart_btn.setVisibility(View.VISIBLE);
+		}
 	}
 			
 

@@ -27,6 +27,8 @@ package com.example.moneymeterexample;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,16 +49,18 @@ public class AChartEnginePieChartActivity extends Activity {
   
 	private CategorySeries mSeries = new CategorySeries("");  
 	private HashMap<String,Float> chart_values;// = new HashMap<String,Float>();
-	private static int[] COLORS = {Color.BLUE,Color.RED,Color.CYAN,Color.GREEN,Color.MAGENTA,Color.GRAY,Color.YELLOW,
-		Color.LTGRAY,Color.DKGRAY,Color.WHITE,Color.rgb(0, 0, 0)};  
+	private static int[] COLORS = {Color.rgb(255, 0, 255),Color.rgb(76,0,153),Color.YELLOW,
+		Color.BLUE,Color.RED,Color.CYAN,Color.GREEN,Color.MAGENTA,Color.GRAY,
+		Color.LTGRAY,Color.DKGRAY,Color.WHITE,Color.rgb(0, 0, 0),Color.rgb(255,204,204)};  
 	private DefaultRenderer mRenderer = new DefaultRenderer();  
 	private static boolean is_custom = false; 
 	private GraphicalView mChartView;  
-  
+	DecimalFormat df;
 	@Override  
 	protected void onCreate(Bundle savedInstanceState) {  
 		super.onCreate(savedInstanceState);  
 		setContentView(R.layout.activity_achart_engine_pie_chart); 
+		df = new DecimalFormat("0.00");
 		DataBaseHelper db;
 		db = new DataBaseHelper(this);
 		is_custom = getIntent().getBooleanExtra("is_custom", false);
@@ -124,7 +128,7 @@ public class AChartEnginePieChartActivity extends Activity {
 					if (seriesSelection == null)   
 						Toast.makeText(AChartEnginePieChartActivity.this,"No chart element was clicked",Toast.LENGTH_SHORT).show();  
 					else  
-						Toast.makeText(AChartEnginePieChartActivity.this,"Chart element data point index "+ (seriesSelection.getPointIndex()+1) + " was clicked" + " point value="+ seriesSelection.getValue(), Toast.LENGTH_SHORT).show();  
+						Toast.makeText(AChartEnginePieChartActivity.this,"Chart element data point index "+ (seriesSelection.getPointIndex()+1) + " was clicked" + " point value="+ df.format(seriesSelection.getValue()), Toast.LENGTH_SHORT).show();  
 
 				}  
 			});  
