@@ -18,8 +18,10 @@ PROJECT DESCRIPTION
 -------------------
 
 This is an Android application which helps in keeping a record of personal expenses. 
-Using this application the user can create,read,update and delete expenses. It allows the user 
-to list his/her expenses by category, by date and between 2 dates. The expenses can also be viewed
+Using this application the user can create,read,update and delete expenses. 
+It allows the user 
+to list his/her expenses by category, by date and between 2 dates. 
+The expenses can also be viewed
 in the form of a pie-chart which is an efficient and colorful way of analyzing one's expenses. 
 
 
