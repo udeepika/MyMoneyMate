@@ -17,13 +17,40 @@ MyMoneyMate
 PROJECT DESCRIPTION
 -------------------
 
+This is an Android application which helps in keeping a record of personal expenses. 
+Using this application the user can create,read,update and delete expenses. It allows the user 
+to list his/her expenses by category, by date and between 2 dates. The expenses can also be viewed
+in the form of a pie-chart which is an efficient and colorful way of analyzing one's expenses. 
 
-This is an Android app to keep a record of personal expenses.
+
+-Application developed using Android 4.2.2 API level 17. 
+-Application uses AChartEngine, a charting library for Android Application.(Apache License 2.0)
+-The website for AChartEngine is : http://www.achartengine.org/
+
+
+FUTURE ENHANCEMENTS
+--------------------
+
+- Currently the application allows the user to save only expenses. In future, I would like to extend it
+  to save credits or income as well. 
+- Each expense consists of a date, category, amount and id field. I also plan to add an image field to the 
+  database table to save the image of the receipt or check related to the expense entry.
+- Currently the user has to choose dates to view expenses between them. I plan to add a view expenses by month
+  option so that by just selecting the month the user can view all the expenses for that month.
+- I plan to add viewing the expenses in bar chart format as well.
+
 
 CONTACT DETAILS
 ---------------
 
 Written by Deepika Punyamurtula email: udeepika@pdx.edu
+
+
+REPOSITORY LOCATION
+-------------------
+Following is the link to the repository:
+https://github.com/udeepika/MyMoneyMate
+
 
 LICENSE INFORMATION
 -------------------
