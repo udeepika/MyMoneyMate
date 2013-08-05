@@ -47,7 +47,8 @@ FUTURE ENHANCEMENTS
 CONTACT DETAILS
 ---------------
 
-Written by Deepika Punyamurtula email: udeepika@pdx.edu
+Written by Deepika Punyamurtula 
+email: udeepika@pdx.edu
 
 
 REPOSITORY LOCATION
