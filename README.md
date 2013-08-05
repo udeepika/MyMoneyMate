@@ -26,7 +26,9 @@ in the form of a pie-chart which is an efficient and colorful way of analyzing o
 
 
 -Application developed using Android 4.2.2 API level 17. 
+
 -Application uses AChartEngine, a charting library for Android Application.(Apache License 2.0)
+
 -The website for AChartEngine is : http://www.achartengine.org/
 
 
