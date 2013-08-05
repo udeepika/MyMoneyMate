@@ -45,7 +45,7 @@
         android:layout_marginTop="39dp"
         android:text="Category" 
         android:textStyle="bold"
-        android:background="#eb6841"/>
+        android:background="#e6f409"/>
 
     <Button
         android:id="@+id/cal1"
@@ -128,7 +128,7 @@
         android:layout_above="@+id/cal2"
         android:layout_alignLeft="@+id/to_txt"
         android:layout_alignParentRight="true"
-        android:background="#eb6841"
+        android:background="#e6f409"
         android:textStyle="bold"
         android:textColor="#67204e"
         android:text="To" />
@@ -163,7 +163,7 @@
         android:layout_alignLeft="@+id/spinner1"
         android:layout_below="@+id/spinner1"
         android:layout_marginTop="22dp"
-        android:background="#eb6841"
+        android:background="#e6f409"
         android:text="From"
         android:textColor="#67204e"
         android:textStyle="bold" />

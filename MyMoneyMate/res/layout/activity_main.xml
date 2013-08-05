@@ -43,12 +43,28 @@
         android:textStyle="bold"
          />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="400px"
+        android:layout_gravity="center"
+        android:layout_height="145px"
+        android:textSize="25px"
+        android:padding="10px"
+        android:text="A smart way to keep track of your personal expenses!! Add,view, update and delete your expenses with ease." 
+        android:background="@drawable/textbox"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
     <Button
         android:id="@+id/btn_add"
         android:layout_width="fill_parent"
         android:layout_height="60px"
         android:layout_margin="5dp"
-        android:textColor="#67204e"
+        android:textColor="#67204e" 
         android:background="@drawable/rounded"
         android:textStyle="bold"
         android:textSize="22dp"
@@ -59,11 +75,11 @@
         android:layout_width="fill_parent"
         android:layout_height="60px"
         android:layout_margin="5dp"
-        android:textColor="#67204e"
         android:background="@drawable/rounded"
-        android:textStyle="bold"
+        android:text="View Expenses"
+        android:textColor="#67204e"
         android:textSize="22dp"
-        android:text="View Expenses" />
+        android:textStyle="bold" />
 
 </LinearLayout>
 

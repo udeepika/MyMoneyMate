@@ -69,7 +69,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 			new ArrayList<HashMap<String,String>>(); 
 	ListView lv;
 	TextView txt_id,total;
-	Button back_btn;
+	Button home_btn;
 	int view_by;
 	DecimalFormat format;
 	@Override
@@ -79,8 +79,8 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		format = new DecimalFormat();
 		format.setMaximumFractionDigits(2);
 		format.setMinimumFractionDigits(2);
-		back_btn = (Button)findViewById(R.id.back_btn);
-		back_btn.setOnClickListener(this);
+		//back_btn = (Button)findViewById(R.id.back_btn);
+		//back_btn.setOnClickListener(this);
 		view_by = getIntent().getIntExtra("view_by", 0);
 		System.out.println("Fine till here ");
 		SimpleAdapter sd = new SimpleAdapter(this, list, R.layout.table_row, new String[]{"date", "category", "amount","select"},
@@ -156,11 +156,11 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		switch(arg0.getId()){
-		case (R.id.back_btn):
-			Intent addIntent = new Intent(ViewExpenseActivity.this,MainActivity.class);
-		startActivity(addIntent);
-		finish();
-		break;
+		//case (R.id.back_btn):
+			//Intent addIntent = new Intent(ViewExpenseActivity.this,MainActivity.class);
+		//startActivity(addIntent);
+		//finish();
+		//break;
 
 		default:
 			break;

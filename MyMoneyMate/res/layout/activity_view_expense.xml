@@ -1,4 +1,4 @@
-<!--*******************************************************************************************
+<!--********************************************************************************************************************
 * MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
 * This program is free software: you can redistribute it and/or modify it under 
@@ -19,9 +19,9 @@
 * email: udeepika@pdx.edu
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
-* References: 
+* References: http://developer.android.com/reference/android/widget/ListView.html#attr_android%3afooterDividersEnabled
 
-***************************************************************************************** -->
+********************************************************************************************************************* -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -35,13 +35,15 @@
     android:background="@drawable/bck_5"
      >
 
-    <Button
-        android:id="@+id/back_btn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="67dp"
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="Back" />
+        android:text="Expenses"
+        android:textColor="#67204e"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:gravity="center" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -58,28 +60,36 @@
             android:text="Total Amount($): "
             android:textSize="20sp"
             android:textColor="#4f3edf" 
-            android:textStyle="bold" />"
+            android:textStyle="bold" 
+            android:background="#e6f409"/>"
 
         <TextView
             android:id="@+id/tvValue"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="center"
             android:layout_toRightOf="@+id/tvHeader"
             android:textStyle="bold"
-        	android:textColor="#67204e"
+        	android:textColor="#4f3edf"
             android:layout_alignParentRight="true"
-            android:gravity="left"
+            android:gravity="center"
             android:textSize="20sp"
+            android:background="#e6f409"
             />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+         />
 
 	<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#dce90f" >
+        android:background="#e6f409" >
 
 		<TextView
 		    android:id="@+id/Date"
@@ -122,6 +132,9 @@
       android:layout_width="wrap_content" 
       android:layout_height="wrap_content"
       android:textColor="#67204e"
-      android:background="#d9c3dd" />
+      android:background="@drawable/border"
+      android:divider="#e6f409"
+      android:dividerHeight="2dip"
+       />
 
 </LinearLayout>

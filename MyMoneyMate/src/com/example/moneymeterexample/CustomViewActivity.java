@@ -79,6 +79,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
         toDay = cal_to.get(Calendar.DAY_OF_MONTH);
         view_chart_btn = (Button)findViewById(R.id.pie_chart_btn);
         view_chart_btn.setOnClickListener(this);
+        view_chart_btn.setClickable(false);
         /** Display the current date in the TextView */
         updateFromDisplay();
         updateToDisplay();
@@ -229,7 +230,9 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 		// TODO Auto-generated method stub
 		category_val = parent.getItemAtPosition(position).toString();	
 		if(category_val.equals("All")){
+			view_chart_btn.setClickable(true);
 			view_chart_btn.setVisibility(View.VISIBLE);
+			
 		}
 	}
 			

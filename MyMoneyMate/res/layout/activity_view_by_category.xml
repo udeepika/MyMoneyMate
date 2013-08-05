@@ -49,7 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:textColor="#67204e"
-      	android:background="#d9c3dd">
+        android:divider="#e6f409"
+        android:dividerHeight="2dip"
+      	android:background="@drawable/border">
     </ListView>
 
 </LinearLayout>

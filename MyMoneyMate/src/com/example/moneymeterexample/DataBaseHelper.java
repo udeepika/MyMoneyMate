@@ -16,8 +16,9 @@
 * https://github.com/udeepika/MyMoneyMate/blob/master/License.txt
 *
 * Author - Deepika Punyamurtula
-* email: udeepika@pdx.edu
+* email:   udeepika@pdx.edu
 * Link to repository- https://github.com/udeepika/MyMoneyMate
+* 
 * References: http://androiddevelopmentworld.blogspot.com/2013/04/android-sqlite-tutorial.html
 *			  http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
 *			  http://javapapers.com/android/android-sqlite-database/
@@ -217,11 +218,11 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     	SQLiteDatabase db = this.getWritableDatabase();
     	if (cat.equals("All"))
     		cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE date BETWEEN '"
-    				+from_date+"' AND '"+to_date+"' ", null); 
+    				+from_date+"' AND '"+to_date+"' ORDER BY date", null); 
 
     	else
     		cursor = db.rawQuery("SELECT * FROM " + TABLE_EXPENSES + " WHERE category="+"'"+cat+"' AND date BETWEEN '"
-    				+from_date+"' AND '"+to_date+"'", null);  
+    				+from_date+"' AND '"+to_date+"' ORDER BY date", null);  
 
     	if(cursor.getCount()!=0){
     		if (cursor.moveToFirst()) {
