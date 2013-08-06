@@ -56,6 +56,11 @@ REPOSITORY LOCATION
 Following is the link to the repository:
 https://github.com/udeepika/MyMoneyMate
 
+ISSUE TRACKER
+--------------
+Following is the link to the Issue Tracker:
+https://github.com/udeepika/MyMoneyMate/issues?state=open
+
 
 LICENSE INFORMATION
 -------------------
