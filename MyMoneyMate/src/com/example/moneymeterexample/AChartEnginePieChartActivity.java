@@ -91,7 +91,19 @@ public class AChartEnginePieChartActivity extends Activity {
 			
 		}
 		}
-		
+		/*else if(is_category)
+		{
+			String category = getIntent().getStringExtra("category");
+			String from = getIntent().getStringExtra("from_date");
+			String to = getIntent().getStringExtra("to_date");
+			System.out.println(category);
+			if(category.equals("All"))
+			chart_values=db.getChartValuesBetweenDates(from,to);
+			else
+			chart_values=db.getChartValuesForCat(category,from,to);
+		} */
+		else
+			chart_values=db.getAllExpenseforChart();  
 		
 		int i = 0;
 		Iterator values = chart_values.entrySet().iterator();
