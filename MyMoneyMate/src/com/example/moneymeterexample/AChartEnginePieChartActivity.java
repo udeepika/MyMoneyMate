@@ -1,25 +1,25 @@
 /* *************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
-* Copyright © 2013 Deepika Punyamurtula
-* This program is free software: you can redistribute it and/or modify it under 
-* the terms of the GNU General Public License as published by the Free Software Foundation, 
-* either version 3 of the License, or (at your option) any later version.
+ * Copyright © 2013 Deepika Punyamurtula
+ * MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
+ * This program is free software: you can redistribute it and/or modify it under 
+ * the terms of the GNU General Public License as published by the Free Software Foundation, 
+ * either version 3 of the License, or (at your option) any later version.
 
-* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
-* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-* See the GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License along with this program.
-* If not, see http://www.gnu.org/licenses/.
-* Please see the file "License" in this distribution for license terms. 
-* Below is the link to the License file:
-* https://github.com/udeepika/MyMoneyMate/blob/master/License.txt
-*
-* Author - Deepika Punyamurtula
-* email: udeepika@pdx.edu
-* Link to repository- https://github.com/udeepika/MyMoneyMate
-* Reference : http://v4all123.blogspot.com/2013/03/piechart-using-achartengine.html 
-***************************************************************************************** */
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see http://www.gnu.org/licenses/.
+ * Please see the file "License" in this distribution for license terms. 
+ * Below is the link to the License file:
+ * https://github.com/udeepika/MyMoneyMate/blob/master/License.txt
+ *
+ * Author - Deepika Punyamurtula
+ * email: udeepika@pdx.edu
+ * Link to repository- https://github.com/udeepika/MyMoneyMate
+ * Reference : http://v4all123.blogspot.com/2013/03/piechart-using-achartengine.html 
+ ***************************************************************************************** */
 
 
 package com.example.moneymeterexample;
@@ -44,9 +44,9 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;  
 import android.widget.LinearLayout;  
 import android.widget.Toast;  
-  
+
 public class AChartEnginePieChartActivity extends Activity {   
-  
+
 	private CategorySeries mSeries = new CategorySeries("");  
 	private HashMap<String,Float> chart_values;// = new HashMap<String,Float>();
 	private static int[] COLORS = {Color.rgb(255, 0, 255),Color.rgb(76,0,153),Color.YELLOW,
@@ -54,6 +54,8 @@ public class AChartEnginePieChartActivity extends Activity {
 		Color.LTGRAY,Color.DKGRAY,Color.WHITE,Color.rgb(0, 0, 0),Color.rgb(255,204,204)};  
 	private DefaultRenderer mRenderer = new DefaultRenderer();  
 	private static boolean is_custom = false; 
+	private static boolean is_date = false;
+	private static boolean is_category = false;
 	private GraphicalView mChartView;  
 	DecimalFormat df;
 	@Override  
@@ -64,20 +66,38 @@ public class AChartEnginePieChartActivity extends Activity {
 		DataBaseHelper db;
 		db = new DataBaseHelper(this);
 		is_custom = getIntent().getBooleanExtra("is_custom", false);
-		if(is_custom)
+		is_date = getIntent().getBooleanExtra("is_date", false);
+		is_category = getIntent().getBooleanExtra("is_category", false);
+		/* Get the expenses from the database    */
+		if(is_date){
+			String date = getIntent().getStringExtra("date");
+			chart_values=db.getChartValuesforDate(date);	
+
+		}
+
+		else if(is_custom)
 		{
 			String from = getIntent().getStringExtra("from_date");
 			String to = getIntent().getStringExtra("to_date");
-			chart_values=db.getChartBetweenDates(from,to);	
-			System.out.println("Reached between dates");
+			if(is_category)
+			{
+				String category = getIntent().getStringExtra("category");
+				System.out.println(category);
+				if(category.equals("All"))
+				chart_values=db.getChartValuesBetweenDates(from,to);
+				else
+				chart_values=db.getChartValuesForCat(category,from,to);
+			
+			
 		}
-		else
-			chart_values=db.getExpenseforChart(); 
+		}
+		
+		
 		int i = 0;
 		Iterator values = chart_values.entrySet().iterator();
 		float[] VALUES=new float[chart_values.size()]; 
 		ArrayList<String> CATEGORY_LIST = new ArrayList<String>();
-		
+
 		while(values.hasNext())
 		{
 			Map.Entry entry = (Map.Entry)values.next();
@@ -87,17 +107,18 @@ public class AChartEnginePieChartActivity extends Activity {
 		} 
 
 		mRenderer.setApplyBackgroundColor(true);  
-		mRenderer.setBackgroundColor(Color.WHITE);  
-		mRenderer.setChartTitleTextSize(20);  
-		mRenderer.setLabelsTextSize(17);  
-		mRenderer.setLegendTextSize(17); 
-		mRenderer.setLabelsColor(Color.RED);
+		mRenderer.setBackgroundColor(Color.rgb(99, 228, 240));  
+		mRenderer.setChartTitleTextSize(40); 
+		mRenderer.setLabelsTextSize(22);  
+		mRenderer.setLegendTextSize(20); 
+		mRenderer.setLabelsColor(Color.BLACK);
 		mRenderer.setChartTitle("Expenses");
-		mRenderer.setChartTitleTextSize(25);
-		mRenderer.setMargins(new int[] { 20, 30, 15, 0 });  
+		
+		mRenderer.setChartTitleTextSize(30);
+		mRenderer.setMargins(new int[] { 60, 30, 15, 10 });  
 		mRenderer.setZoomButtonsVisible(true);  
 		mRenderer.setStartAngle(90);  
-  
+
 		for (int i1 = 0; i1 < VALUES.length; i1++) 
 		{  
 			mSeries.add(CATEGORY_LIST.get(i1) + " " + VALUES[i1], VALUES[i1]);  
@@ -105,13 +126,13 @@ public class AChartEnginePieChartActivity extends Activity {
 			renderer.setColor(COLORS[(mSeries.getItemCount() - 1) % COLORS.length]);  
 			mRenderer.addSeriesRenderer(renderer);  
 		}  
-  
+
 		if (mChartView != null) {  
 			mChartView.repaint();  
 		}  
-  
+
 	}  
-  
+
 	@Override  
 	protected void onResume() {  
 		super.onResume();  
@@ -132,7 +153,7 @@ public class AChartEnginePieChartActivity extends Activity {
 
 				}  
 			});  
-  
+
 			mChartView.setOnLongClickListener(new View.OnLongClickListener() {  
 				@Override  
 				public boolean onLongClick(View v) {  

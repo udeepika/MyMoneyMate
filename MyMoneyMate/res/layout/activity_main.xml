@@ -1,6 +1,6 @@
 <!--****************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -20,55 +20,54 @@
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
 * References: http://mobile.tutsplus.com/tutorials/android/android-user-interface-design-basic-font-sizes/
+			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
+			  
 
-********************************************************************************************************* -->
+*********************************************************************************************************-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
     android:background="@drawable/bck_5"
-    >
+    android:orientation="vertical" >
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="MyMoneyMate"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="28dp"
         android:textColor="#67204e"
-        android:textStyle="bold"
-         />
+        android:textSize="28dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="400px"
-        android:layout_gravity="center"
         android:layout_height="145px"
-        android:textSize="25px"
+        android:layout_gravity="center"
+        android:background="@drawable/textbox"
         android:padding="10px"
-        android:text="A smart way to keep track of your personal expenses!! Add,view, update and delete your expenses with ease." 
-        android:background="@drawable/textbox"/>
+        android:text="A smart way to keep track of your personal expenses. Add,view, update and delete your expenses with ease!!!"
+        android:textSize="25px" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         />
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btn_add"
         android:layout_width="fill_parent"
         android:layout_height="60px"
         android:layout_margin="5dp"
-        android:textColor="#67204e" 
         android:background="@drawable/rounded"
-        android:textStyle="bold"
+        android:text="Add Expense"
+        android:textColor="#67204e"
         android:textSize="22dp"
-        android:text="Add Expense" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_view"
@@ -80,6 +79,18 @@
         android:textColor="#67204e"
         android:textSize="22dp"
         android:textStyle="bold" />
+    <TextView android:layout_width="match_parent"
+    		  android:layout_height="10px" />
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
+        <ImageView
+            android:layout_width="140px"
+            android:layout_height="300px"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/bag" />
+
+</RelativeLayout>
 </LinearLayout>
-

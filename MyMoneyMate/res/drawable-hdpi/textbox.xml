@@ -1,6 +1,6 @@
 <!--****************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -27,13 +27,12 @@
             
             <solid android:color="#49cb80"/>
             <corners
-                        android:bottomRightRadius="1dp"
-                        android:bottomLeftRadius="1dp"
-                        android:topLeftRadius="1dp"
-                        android:topRightRadius="1dp"/>
+                        android:bottomRightRadius="2dp"
+                        android:bottomLeftRadius="2dp"
+                        android:topLeftRadius="2dp"
+                        android:topRightRadius="2dp"/>
             <stroke android:width="3px" 
-                 android:color="#161716" />
+                 android:color="#67204e"
+                 android:dashWidth="3dp" />
             
-            
-
 </shape>

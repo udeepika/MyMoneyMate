@@ -1,6 +1,6 @@
 /* *****************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -21,10 +21,10 @@
 *References: http://androiddevelopmentworld.blogspot.com/2013/04/android-sqlite-tutorial.html
 *			 http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
 *			 http://javapapers.com/android/android-sqlite-database/
-*			 
-* 			  
-* 			  
+*			
 ********************************************************************************************************** */
+
+
 package com.example.moneymeterexample;
 
 public class ExpenseEntry {

@@ -1,6 +1,6 @@
 /* ********************************************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -79,13 +79,12 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		format = new DecimalFormat();
 		format.setMaximumFractionDigits(2);
 		format.setMinimumFractionDigits(2);
-		//back_btn = (Button)findViewById(R.id.back_btn);
-		//back_btn.setOnClickListener(this);
 		view_by = getIntent().getIntExtra("view_by", 0);
-		System.out.println("Fine till here ");
+		
 		SimpleAdapter sd = new SimpleAdapter(this, list, R.layout.table_row, new String[]{"date", "category", "amount","select"},
 				new int[] {R.id.DATE_CELL,R.id.CATEGORY_CELL,R.id.AMOUNT_CELL,R.id.SELECT_ICON}); 
 		total = (TextView)findViewById(R.id.tvValue);
+		
 		switch(view_by){
 		case ViewByDateActivity.VIEW_BY_DATE_ID:
 			fillListViewByDate();
@@ -118,62 +117,17 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 
 
 
-	private void fillListView() {
-		DataBaseHelper db;
-		// TODO Auto-generated method stub
-		db = new DataBaseHelper(this);
-		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
-
-		System.out.println("rwached bydate function");
-
-		float sum = 0;
-		System.out.println("Entered all");
-		exp_list = db.getExpenses();
-		System.out.println("After get expenses");
-
-		for(int i =0;i<exp_list.size();i++){
-			Button b = new Button(this);
-			HashMap<String,String> temp = new HashMap<String,String>();
-
-			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
-			temp.put("date",exp_list.get(i).getDate().toString());
-			temp.put("category",exp_list.get(i).category.toString());
-			temp.put("amount", format.format(exp_list.get(i).getAmount()));
-			temp.put("notes", exp_list.get(i).getNotes().toString());
-			sum+=exp_list.get(i).getAmount();
-			list.add(temp); 
-
-
-		}
-		//String totalVal = new String("Total Amount Spent : "+);
-		total.setText(String.valueOf(format.format(sum)));
-		db.close();
-
-
-	}
-
+	
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		switch(arg0.getId()){
-		//case (R.id.back_btn):
-			//Intent addIntent = new Intent(ViewExpenseActivity.this,MainActivity.class);
-		//startActivity(addIntent);
-		//finish();
-		//break;
-
 		default:
 			break;
-
 		}
-
 	}  
 
-	public void onDestroy() {
-		super.onDestroy();
-		android.os.Process.killProcess(android.os.Process.myPid());
-	}   
-
+	
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		System.out.println("The item clicked is ");
@@ -189,6 +143,7 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		startActivity(edit_intent);
 	}
 
+	/* Fill Listview with expenses for a given date */
 	private void fillListViewByDate(){
 		DataBaseHelper db;
 		db = new DataBaseHelper(this);
@@ -213,7 +168,9 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		db.close();
 
 	}
+	
 
+	/* Fill ListView with Expenses for a given category */
 	private void fillListViewByCat(){
 		DataBaseHelper db;
 		db = new DataBaseHelper(this);
@@ -221,7 +178,6 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 		String cat_value = getIntent().getExtras().getString("cat_value");
 		exp_list = db.getExpenseByCategory(cat_value);
 		float sum = 0;
-
 		for(int i =0;i<exp_list.size();i++){
 			Button b = new Button(this);
 			HashMap<String,String> temp = new HashMap<String,String>();
@@ -232,15 +188,15 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 			temp.put("notes", exp_list.get(i).getNotes().toString());
 			sum+=exp_list.get(i).getAmount();
 			list.add(temp); 
-
-
 		}
 
 		total.setText(String.valueOf(format.format(sum)));
 		db.close();
 
 	}
-
+	
+	
+	/* Fill ListView with expenses for a given category and between 2 dates */
 	private void fillListViewCustom(){
 		DataBaseHelper db;
 		db = new DataBaseHelper(this);
@@ -270,12 +226,43 @@ public class ViewExpenseActivity extends ListActivity implements OnClickListener
 
 	}
 
-	public void onBackPressed(){
+	/*Fill ListView with all expenses from the Database */
+	private void fillListView() {
+		DataBaseHelper db;
+		// TODO Auto-generated method stub
+		db = new DataBaseHelper(this);
+		ArrayList<ExpenseEntry> exp_list = new ArrayList<ExpenseEntry>();
+		float sum = 0;
+		System.out.println("Entered all");
+		exp_list = db.getExpenses();
 
-		Intent mainActivityIntent = new Intent(ViewExpenseActivity.this,ViewExpensesOptionsActivity.class);
-		finish();
-		startActivity(mainActivityIntent);
-
+		for(int i =0;i<exp_list.size();i++){
+			Button b = new Button(this);
+			HashMap<String,String> temp = new HashMap<String,String>();
+			temp.put("_id",Integer.toString(exp_list.get(i).getId()));
+			temp.put("date",exp_list.get(i).getDate().toString());
+			temp.put("category",exp_list.get(i).category.toString());
+			temp.put("amount", format.format(exp_list.get(i).getAmount()));
+			temp.put("notes", exp_list.get(i).getNotes().toString());
+			sum+=exp_list.get(i).getAmount();
+			list.add(temp); 
+		}		
+		total.setText(String.valueOf(format.format(sum)));
+		db.close();
 	}
+
+	public void onBackPressed(){
+		
+		Intent optionsActivityIntent = new Intent(ViewExpenseActivity.this,ViewExpensesOptionsActivity.class);
+		
+		startActivity(optionsActivityIntent);
+		onDestroy();
+
+	} 
+	
+	public void onDestroy() {
+		super.onDestroy();
+		android.os.Process.killProcess(android.os.Process.myPid());
+	} 
 
 }

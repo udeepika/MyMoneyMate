@@ -1,6 +1,6 @@
-/* *************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
+/* ***********************************************************************************************************
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -18,8 +18,12 @@
 * Author - Deepika Punyamurtula
 * email: udeepika@pdx.edu
 * Link to repository- https://github.com/udeepika/MyMoneyMate
-References:
-***************************************************************************************** */
+* References:http://www.verious.com/article/how-to-create-date-picker-dialog-for-selecting-a-date-in-android/
+*			 http://www.dcpagesapps.com/developer-resources/android/21-android-tutorial-spinners?start=2
+* 			 http://www.androidhive.info/2012/06/android-populating-spinner-data-from-sqlite-database/
+*            http://developer.android.com/reference/android/content/Intent.html
+*            http://marakana.com/forums/android/examples/65.html
+************************************************************************************************************* */
 package com.example.moneymeterexample;
 
 import java.util.ArrayList;
@@ -54,6 +58,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	static final int TO_DATE_ID=5;
 	static ArrayList<String> category_list;
 	static String category_val;
+	static boolean is_category ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,7 +73,9 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 		view_btn.setOnClickListener(this);
 		category = (Spinner)findViewById(R.id.spinner1);
 		category.setOnItemSelectedListener(this);
-		loadCategorySpinnerValues();
+		
+		
+		
 		final Calendar cal_from = Calendar.getInstance();
 		final Calendar cal_to = Calendar.getInstance();
 		fromYear = cal_from.get(Calendar.YEAR);
@@ -79,8 +86,11 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
         toDay = cal_to.get(Calendar.DAY_OF_MONTH);
         view_chart_btn = (Button)findViewById(R.id.pie_chart_btn);
         view_chart_btn.setOnClickListener(this);
-        view_chart_btn.setClickable(false);
-        /** Display the current date in the TextView */
+        //view_chart_btn.setClickable(false);
+        
+        loadCategorySpinnerValues();
+        
+        /*Update Date TextView displays */
         updateFromDisplay();
         updateToDisplay();
 		
@@ -115,6 +125,8 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 			
 		case R.id.pie_chart_btn:
 			Intent view_chart_intent = new Intent(CustomViewActivity.this,AChartEnginePieChartActivity.class);
+			view_chart_intent.putExtra("is_category", is_category);
+			view_chart_intent.putExtra("category", category_val);
 			view_chart_intent.putExtra("from_date", from_date.getText().toString());
 			view_chart_intent.putExtra("to_date", to_date.getText().toString());
 			view_chart_intent.putExtra("is_custom", true);
@@ -159,7 +171,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 			if(fromDay < 9){
 				from_date.setText(
 						new StringBuilder()
-						// Appending 0 to month and day for the  format MM/DD/YYYY
+						// Appending 0 to month and day for the  format YYYY-MM-DD
 						.append(fromYear).append("-")
 						.append(0).append(fromMonth + 1).append("-")
 						.append(0).append(fromDay)
@@ -168,7 +180,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 
 			else     	{
 				from_date.setText(
-						// Appending 0 to month for the format MM/DD/YYYY
+						// Appending 0 to month for the format YYYY-MM-DD
 						new StringBuilder()
 						.append(fromYear).append("-").append(0).append(fromMonth + 1).append("-")
 						.append(fromDay)
@@ -195,7 +207,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 			if(toDay < 9){
 				to_date.setText(
 						new StringBuilder()
-						// Appending 0 to month and day for the  format MM/DD/YYYY
+						// Appending 0 to month and day for the  format YYYY-MM-DD
 						.append(toYear).append("-")
 						.append(0).append(toMonth + 1).append("-")
 						.append(0).append(toDay)
@@ -204,7 +216,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 
 			else     	{
 				to_date.setText(
-						// Appending 0 to month for the format MM/DD/YYYY
+						// Appending 0 to month for the format YYYY-MM-DD
 						new StringBuilder()
 						.append(toYear).append("-").append(0).append(toMonth + 1).append("-")
 						.append(toDay)
@@ -230,10 +242,10 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 		// TODO Auto-generated method stub
 		category_val = parent.getItemAtPosition(position).toString();	
 		if(category_val.equals("All")){
-			view_chart_btn.setClickable(true);
-			view_chart_btn.setVisibility(View.VISIBLE);
-			
+			is_category = false;
 		}
+		else
+			is_category = true;
 	}
 			
 

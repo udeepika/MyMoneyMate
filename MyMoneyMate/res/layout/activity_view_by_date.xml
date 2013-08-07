@@ -1,6 +1,6 @@
 <!--*******************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -19,30 +19,30 @@
 * email: udeepika@pdx.edu
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
-* References: 
+* References: http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
 
-***************************************************************************************** -->
+*****************************************************************************************-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bck_5"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ViewByDateActivity" 
-    android:background="@drawable/bck_5" >
+    tools:context=".ViewByDateActivity" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_weight="1"
-        android:textStyle="bold"
+        android:text="View By Date"
         android:textColor="#67204e"
         android:textSize="24dp"
-        android:text="View By Date" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/view_for_date_btn"
@@ -51,10 +51,10 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="@drawable/rounded"
-       	android:textStyle="bold"
-       	android:textColor="#67204e"
-       	android:textSize="20dp"
-        android:text="View for this date" />
+        android:text="View List"
+        android:textColor="#67204e"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/show_calendar"
@@ -82,10 +82,41 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/date_txt"
         android:layout_alignBottom="@+id/date_txt"
-        android:layout_alignLeft="@+id/textView1"
-        android:textStyle="bold"
+        android:layout_alignLeft="@+id/view_for_date_btn"
+        android:text="DATE"
         android:textColor="#67204e"
         android:textSize="22dp"
-        android:text="DATE" />
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/view_chart"
+        android:layout_width="wrap_content"
+        android:layout_height="60px"
+        android:layout_alignLeft="@+id/view_for_date_btn"
+        android:layout_alignRight="@+id/view_for_date_btn"
+        android:layout_below="@+id/view_for_date_btn"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded"
+        android:text="Pie Chart"
+        android:textColor="#67204e"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/view_chart"
+        android:layout_alignRight="@+id/imageView1"
+        android:layout_below="@+id/view_chart"
+         />
+
+    <ImageView
+        android:layout_width="120px"
+        android:layout_height="300px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/view_chart"
+        android:layout_below="@+id/textView3"
+        android:src="@drawable/bag" />
 
 </RelativeLayout>

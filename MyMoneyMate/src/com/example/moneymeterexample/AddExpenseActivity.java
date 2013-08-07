@@ -1,6 +1,6 @@
 /* ******************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -26,13 +26,15 @@
 			
 ********************************************************************************************************** */
 
+
+/*This activity is used to add or edit expenses.  */
+
 package com.example.moneymeterexample;
 
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -40,14 +42,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.view.Menu;
-import android.os.Bundle;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -57,17 +56,18 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 public class AddExpenseActivity extends Activity implements OnClickListener,OnItemSelectedListener{
 
-	private Button addExpense_btn,clear_button;
+	private Button addExpense_btn,clear_button,back_button;
 	Button show_cal;
 	EditText amt,date,notes;
 	Spinner category;
 	String category_val;
+	TextView title_text;
 	private int mYear;
 	private int mMonth;
 	private int mDay;
@@ -77,33 +77,31 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 	public static boolean IS_ADD = true;
 	static ArrayList<String> cat_list ;
 	public  int row_id,view_by;
-	//DecimalFormat df;
 	
-	//boolean check = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_expense);
-		//DecimalFormat df = new DecimalFormat();
-		//df.setMinimumFractionDigits(2);
-		//df.setMaximumFractionDigits(2);
 		IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
+		
 		String amount_val = getIntent().getStringExtra("amount");
 		int view_by = getIntent().getIntExtra("view_by", 0);
 		String date_val = getIntent().getStringExtra("date");
 		String category_val = getIntent().getStringExtra("category");
 		String notes_val = getIntent().getStringExtra("notes");
 		int row_id =getIntent().getIntExtra("_id", 0);
+		
 		addExpense_btn = (Button) findViewById(R.id.add_btn);
 		clear_button = (Button) findViewById(R.id.clear_btn);
-		show_cal = (Button) findViewById(R.id.show_calendar);
 		addExpense_btn.setOnClickListener(this);
 		clear_button.setOnClickListener(this);
+		title_text = (TextView)findViewById(R.id.textView4);
 		amt = (EditText) findViewById(R.id.amt_val);
 		date = (EditText) findViewById(R.id.amt_date);
 		category = (Spinner) findViewById(R.id.amt_cat);
 		category.setOnItemSelectedListener(this);
 		notes = (EditText) findViewById(R.id.notes_txt);
+		show_cal = (Button) findViewById(R.id.show_calendar);
 		show_cal.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -112,9 +110,12 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 				showDialog(DATE_DIALOG_ID);
 			}
 		});
+		
 		loadCategorySpinnerValues();
-		/* If this activity is reached from the listView of Expenses */
+		
+		/* If this activity is reached from the listView of Expenses, used to edit/delete the expenses */
 		if (!IS_ADD){
+			title_text.setText("Edit Expense");
 			addExpense_btn.setText("Edit");
 			clear_button.setText("Delete");
 			System.out.println( notes_val + "" + category_val +"" + date_val);
@@ -126,10 +127,10 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 			mDay = Integer.parseInt(date[2].trim());
 			notes.setText(notes_val); 
 			category.setSelection(cat_list.indexOf(category_val.toString()));
-
+			//back_button.setVisibility(View.VISIBLE);
 		}
 
-
+		
 		else{
 			final Calendar cal = Calendar.getInstance();
 			mYear = cal.get(Calendar.YEAR);
@@ -162,7 +163,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 			if(mDay < 9){
 				date.setText(
 						new StringBuilder()
-						// Appending 0 to month and day for the  format MM/DD/YYYY
+						// Appending 0 to month and day for the  format YYYY-MM-DD
 						.append(mYear).append("-")
 						.append(0).append(mMonth + 1).append("-")
 						.append(0).append(mDay)
@@ -171,7 +172,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 
 			else     	{
 				date.setText(
-						// Appending 0 to month for the format MM/DD/YYYY
+						// Appending 0 to month for the format YYYY-MM-DD
 						new StringBuilder()
 						.append(mYear).append("-").append(0).append(mMonth + 1).append("-")
 						.append(mDay)
@@ -182,7 +183,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 		else{
 			date.setText(
 					new StringBuilder()
-					// Month is 0 based so add 1
+					// Month is 0 based so add 1 for the format YYYY-MM-DD
 					.append(mYear).append("-").append(mMonth + 1).append("-")
 					.append(mDay)
 					.append(" "));
@@ -197,7 +198,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 
 
 
-
+	/* Get the category column values into the Spinner */
 	private void loadCategorySpinnerValues(){
 		DataBaseHelper db;
 		db = new DataBaseHelper(this);
@@ -228,6 +229,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 		// TODO Auto-generated method stub
 		switch(v.getId()){
 		case R.id.add_btn:
+			/* if used as add button */
 			if(IS_ADD){
 
 				if(amt.getText().toString().equals("")||date.getText().toString().equals("")||category.getSelectedItem().equals("No Selection")){
@@ -251,7 +253,8 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 					Toast.makeText(AddExpenseActivity.this, "Record added successfully!!", Toast.LENGTH_LONG).show();
 					db.close();
 				}
-			}	
+			}
+			/* if used as edit button */
 			else{
 				DataBaseHelper db = new DataBaseHelper(getApplicationContext());
 				db.getWritableDatabase();
@@ -276,13 +279,16 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 				category.setSelection(0);
 				notes.setText("");
 			}
+			
+			/*Delete confirmation Dialog */
 			else{
-				//System.out.println("The value of IS_ADD is :" + IS_ADD);
-				//System.out.println();
+				
 				showDialog(DELETE_CONFIRM_ID);
 
 			}
 			break;	
+			
+		
 		}
 
 	}
@@ -290,7 +296,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 
 
 	protected Dialog onCreateDialog(int id) {
-		//IS_ADD = getIntent().getBooleanExtra("IS_ADD", true);
+		
 		switch (id) {
 		case DATE_DIALOG_ID:
 			return new DatePickerDialog(this,
@@ -327,9 +333,6 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 				}
 			});
 
-			/*AlertDialog alert = new_cat_dialog.create();
-			alert.show();
-			break; */
 			return new_cat_dialog.create();
 
 
@@ -359,9 +362,6 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 
 			return delete_dialog.create();
 
-
-
-
 		}
 		return null;
 	}
@@ -369,12 +369,9 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
 
-
 		String category_val = parent.getItemAtPosition(position).toString();
 		if(category_val.equals("New..."))
 		{
-
-			//System.out.println("Value of check is"+ check);
 
 			showDialog(NEW_CATEGORY_ID);
 
@@ -402,5 +399,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 		db.close(); 
 	}
 
-
+	
+	
+	
 }

@@ -1,6 +1,6 @@
 <!--********************************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -20,7 +20,7 @@
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
 * References: http://developer.android.com/reference/android/widget/ListView.html#attr_android%3afooterDividersEnabled
-
+			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
 ********************************************************************************************************************* -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -48,7 +48,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        android:paddingTop="20sp">
 
         <TextView
             android:id="@+id/tvHeader"
@@ -98,6 +99,7 @@
 		    android:layout_marginLeft="0dp"
 		    android:layout_weight="0.88"
 		    android:textColor="#0b4490"
+		    android:textStyle="bold"
 		    android:text="DATE" />
 
 		<TextView
@@ -106,6 +108,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="40dp"
 		    android:layout_weight="1"
+		    android:textStyle="bold"
 		    android:textColor="#0b4490"
 		    android:text="CATEGORY" />
 
@@ -115,6 +118,7 @@
 		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="20dp"
 		    android:layout_weight="1"
+		    android:textStyle="bold"
 		    android:textColor="#0b4490"
 		    android:text="AMOUNT" />
 
@@ -134,7 +138,21 @@
       android:textColor="#67204e"
       android:background="@drawable/border"
       android:divider="#e6f409"
-      android:dividerHeight="2dip"
+      android:dividerHeight="3dip"
        />
+    <TextView android:layout_width="match_parent"
+        	android:layout_height="20sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:layout_width="140px"
+            android:layout_height="300px"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/bag" />
+
+    </RelativeLayout>
 
 </LinearLayout>

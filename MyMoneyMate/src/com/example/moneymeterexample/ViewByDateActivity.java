@@ -1,6 +1,6 @@
 /* *************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -41,7 +41,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ViewByDateActivity extends Activity implements OnClickListener, android.view.View.OnClickListener {
-	Button show_cal;
+	Button show_cal,view_chart;
 	private int mYear;
 	private int mMonth;
 	private int mDay;
@@ -55,6 +55,8 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 		date = (EditText)findViewById(R.id.date_txt);
 		view_btn = (Button)findViewById(R.id.view_for_date_btn);
 		view_btn.setOnClickListener(this);
+		view_chart = (Button) findViewById(R.id.view_chart);
+		view_chart.setOnClickListener(this);
 		show_cal = (Button) findViewById(R.id.show_calendar);
 		show_cal.setOnClickListener(new View.OnClickListener() {
 
@@ -108,7 +110,7 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 			if(mDay < 9){
 				date.setText(
 						new StringBuilder()
-						// Appending 0 to month and day for the  format MM/DD/YYYY
+						// Appending 0 to month and day for the  format YYYY-MM-DD
 						.append(mYear).append("-").append(0).append(mMonth + 1).append("-")
 						.append(0).append(mDay)
 						.append(" ")); 
@@ -116,7 +118,7 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 
 			else     	{
 				date.setText(
-						// Appending 0 to month for the format MM/DD/YYYY
+						// Appending 0 to month for the format YYYY-MM-DD
 						new StringBuilder()
 						.append(mYear).append("-").append(0).append(mMonth + 1).append("-")
 						.append(mDay)
@@ -153,14 +155,21 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 	}
 
 	public void onClick(View v) {
-		if(v.getId()==R.id.view_for_date_btn){
+		switch(v.getId()){
+		case R.id.view_for_date_btn:
 			Intent view_intent = new Intent(ViewByDateActivity.this,ViewExpenseActivity.class );
-			//view_intent.putExtra("FROM", "date");
 			view_intent.putExtra("date_val",date.getText().toString());
 			view_intent.putExtra("view_by", VIEW_BY_DATE_ID);
 			startActivity(view_intent);
-
+			break;
+		
+		case R.id.view_chart:
+			Intent viewchartIntent = new Intent(ViewByDateActivity.this,AChartEnginePieChartActivity.class);
+			viewchartIntent.putExtra("date", date.getText().toString());
+			viewchartIntent.putExtra("is_date", true);
+			startActivity(viewchartIntent);
 		}
 	}
+	
 
 }

@@ -1,6 +1,6 @@
 /* **************************************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -48,7 +48,7 @@ public class ViewByCategoryActivity extends ListActivity implements OnClickListe
 	public static final int VIEW_BY_CAT_ID = 2;
 	ListView lv;
 	ArrayAdapter<String> adapter;
-	//public static SimpleAdapter catAdapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,8 +56,6 @@ public class ViewByCategoryActivity extends ListActivity implements OnClickListe
 
 		DataBaseHelper db;
 		db = new DataBaseHelper(this);
-		//LinearLayout button_layout = (LinearLayout)findViewById(R.id.cat_button_layout);
-
 		cat_btn_list = db.getCategories();
 		adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.button_row,cat_btn_list);
 		setListAdapter(adapter);
@@ -69,7 +67,6 @@ public class ViewByCategoryActivity extends ListActivity implements OnClickListe
 		Intent view_by_cat_intent = new Intent(ViewByCategoryActivity.this,ViewExpenseActivity.class );
 		view_by_cat_intent.putExtra("view_by", VIEW_BY_CAT_ID);
 		view_by_cat_intent.putExtra("cat_value",cat_btn_list.get(position).toString());
-
 		startActivity(view_by_cat_intent);
 	}
 

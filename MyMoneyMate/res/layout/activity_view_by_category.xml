@@ -1,6 +1,6 @@
 <!--****************************************************************************************************
-* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * Copyright © 2013 Deepika Punyamurtula
+* MyMoneyMate - Is an Open Source Android application to keep a record of your expenses.
 * This program is free software: you can redistribute it and/or modify it under 
 * the terms of the GNU General Public License as published by the Free Software Foundation, 
 * either version 3 of the License, or (at your option) any later version.
@@ -20,6 +20,7 @@
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
 * References: http://mobile.tutsplus.com/tutorials/android/android-user-interface-design-basic-font-sizes/
+			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
 
 ********************************************************************************************************* -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,6 +44,9 @@
         android:textStyle="bold"
         android:text="CATEGORIES" 
         android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"/>
 
     <ListView
         android:id="@id/android:list"
@@ -50,8 +54,16 @@
         android:layout_height="wrap_content" 
         android:textColor="#67204e"
         android:divider="#e6f409"
-        android:dividerHeight="2dip"
+        android:dividerHeight="3dip"
       	android:background="@drawable/border">
     </ListView>
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    <ImageView android:layout_width="140px"
+            android:layout_height="300px"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/bag" />
+    </RelativeLayout>
 
 </LinearLayout>
