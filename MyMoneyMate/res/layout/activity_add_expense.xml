@@ -51,7 +51,7 @@
         android:layout_marginTop="28dp"
         android:layout_toRightOf="@+id/textView1"
         android:ems="10"
-        android:hint="Amount"
+        android:hint="00.00"
         android:textColor="#67204e" />
 
     <Button

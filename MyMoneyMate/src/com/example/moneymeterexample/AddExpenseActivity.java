@@ -127,7 +127,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 			mDay = Integer.parseInt(date[2].trim());
 			notes.setText(notes_val); 
 			category.setSelection(cat_list.indexOf(category_val.toString()));
-			//back_button.setVisibility(View.VISIBLE);
+			
 		}
 
 		
@@ -276,7 +276,8 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 			if(IS_ADD){
 				amt.setText("");
 				date.setText("");
-				category.setSelection(0);
+				//category.setSelection(0);
+				((BaseAdapter) category.getAdapter()).notifyDataSetChanged();
 				notes.setText("");
 			}
 			
@@ -347,6 +348,13 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					deleteRecord();
+					amt.setText("");
+					date.setText("");
+					cat_list.remove(category.getSelectedItem().toString());
+					((BaseAdapter) category.getAdapter()).notifyDataSetChanged();
+					notes.setText("");
+					
+					
 				}
 			});
 			delete_dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -355,7 +363,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
 					dialog.cancel();
-					category.setSelection(0);
+					
 				}
 			});
 

@@ -68,6 +68,8 @@ public class AChartEnginePieChartActivity extends Activity {
 		is_custom = getIntent().getBooleanExtra("is_custom", false);
 		is_date = getIntent().getBooleanExtra("is_date", false);
 		is_category = getIntent().getBooleanExtra("is_category", false);
+
+
 		/* Get the expenses from the database    */
 		if(is_date){
 			String date = getIntent().getStringExtra("date");
@@ -75,36 +77,23 @@ public class AChartEnginePieChartActivity extends Activity {
 
 		}
 
-		else if(is_custom)
+		else if(is_category)
 		{
 			String from = getIntent().getStringExtra("from_date");
 			String to = getIntent().getStringExtra("to_date");
-			if(is_category)
-			{
-				String category = getIntent().getStringExtra("category");
-				System.out.println(category);
-				if(category.equals("All"))
-				chart_values=db.getChartValuesBetweenDates(from,to);
-				else
-				chart_values=db.getChartValuesForCat(category,from,to);
-			
-			
-		}
-		}
-		/*else if(is_category)
-		{
 			String category = getIntent().getStringExtra("category");
-			String from = getIntent().getStringExtra("from_date");
-			String to = getIntent().getStringExtra("to_date");
-			System.out.println(category);
+
 			if(category.equals("All"))
-			chart_values=db.getChartValuesBetweenDates(from,to);
+				chart_values=db.getChartValuesBetweenDates(from,to);
+
 			else
-			chart_values=db.getChartValuesForCat(category,from,to);
-		} */
+				chart_values=db.getChartValuesForCat(category,from,to);
+
+		}
+
 		else
 			chart_values=db.getAllExpenseforChart();  
-		
+
 		int i = 0;
 		Iterator values = chart_values.entrySet().iterator();
 		float[] VALUES=new float[chart_values.size()]; 
@@ -125,7 +114,6 @@ public class AChartEnginePieChartActivity extends Activity {
 		mRenderer.setLegendTextSize(20); 
 		mRenderer.setLabelsColor(Color.BLACK);
 		mRenderer.setChartTitle("Expenses");
-		
 		mRenderer.setChartTitleTextSize(30);
 		mRenderer.setMargins(new int[] { 60, 30, 15, 10 });  
 		mRenderer.setZoomButtonsVisible(true);  

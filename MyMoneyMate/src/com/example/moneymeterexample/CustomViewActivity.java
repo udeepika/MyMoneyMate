@@ -58,7 +58,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	static final int TO_DATE_ID=5;
 	static ArrayList<String> category_list;
 	static String category_val;
-	static boolean is_category ;
+	static boolean is_category = true ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -129,7 +129,6 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 			view_chart_intent.putExtra("category", category_val);
 			view_chart_intent.putExtra("from_date", from_date.getText().toString());
 			view_chart_intent.putExtra("to_date", to_date.getText().toString());
-			view_chart_intent.putExtra("is_custom", true);
 			startActivity(view_chart_intent);
 		}
 		
@@ -144,7 +143,6 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 			fromYear = year;
 			fromMonth = monthOfYear;
 			fromDay = dayOfMonth;
-
 			updateFromDisplay();
 
 		}
@@ -242,10 +240,10 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 		// TODO Auto-generated method stub
 		category_val = parent.getItemAtPosition(position).toString();	
 		if(category_val.equals("All")){
-			is_category = false;
+			//is_category = false;
 		}
-		else
-			is_category = true;
+		
+			//is_category = true;
 	}
 			
 
