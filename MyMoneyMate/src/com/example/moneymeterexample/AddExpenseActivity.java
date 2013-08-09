@@ -116,7 +116,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 		/* If this activity is reached from the listView of Expenses, used to edit/delete the expenses */
 		if (!IS_ADD){
 			title_text.setText("Edit Expense");
-			addExpense_btn.setText("Edit");
+			addExpense_btn.setText("Save");
 			clear_button.setText("Delete");
 			System.out.println( notes_val + "" + category_val +"" + date_val);
 			amt.setText(amount_val);
@@ -158,9 +158,9 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 		}
 	};
 	private void updateDisplay() {
-		if(mMonth <9){
+		if(mMonth < 9){
 
-			if(mDay < 9){
+			if(mDay <= 9){
 				date.setText(
 						new StringBuilder()
 						// Appending 0 to month and day for the  format YYYY-MM-DD
@@ -243,7 +243,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 					db.getWritableDatabase();
 					int rowid = db.getTotalRecords()+1;
 					ExpenseEntry ex = new ExpenseEntry();
-					ex.amount = Float.parseFloat((amt.getText().toString()));
+					ex.amount = Float.parseFloat((amt.getText().toString().replace(",", "")));
 					ex.category = category.getSelectedItem().toString();
 					ex.date = date.getText().toString();
 					ex.notes = notes.getText().toString();
@@ -259,7 +259,7 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 				DataBaseHelper db = new DataBaseHelper(getApplicationContext());
 				db.getWritableDatabase();
 				ExpenseEntry ex = new ExpenseEntry();
-				ex.amount = Float.parseFloat(amt.getText().toString());
+				ex.amount = Float.parseFloat(amt.getText().toString().replace(",", ""));
 				ex.category = category.getSelectedItem().toString();
 				ex.date = date.getText().toString();
 				ex.notes = notes.getText().toString();
@@ -396,14 +396,14 @@ public class AddExpenseActivity extends Activity implements OnClickListener,OnIt
 		DataBaseHelper db = new DataBaseHelper(getApplicationContext());
 		db.getWritableDatabase();
 		ExpenseEntry ex = new ExpenseEntry();
-		ex.amount = Float.parseFloat((amt.getText().toString()));
+		ex.amount = Float.parseFloat((amt.getText().toString().replace(",", "")));
 		ex.category = category.getSelectedItem().toString();
 		ex.date = date.getText().toString();
 		ex.notes = notes.getText().toString();
 		ex._id = row_id;
 		Log.i("amount,date,category" ,  ex.amount + "" + ex.date + "" + ex.category + " " + ex.notes+ "" + ex._id);
 		if(db.deleteRecord(ex))
-			Toast.makeText(AddExpenseActivity.this, "Record Deleted", Toast.LENGTH_LONG).show(); 
+			Toast.makeText(AddExpenseActivity.this, "Record deleted successfully!!", Toast.LENGTH_LONG).show(); 
 		db.close(); 
 	}
 

@@ -108,7 +108,7 @@
             android:textSize="22dp"
             android:textColor="#67204e"
    		    android:onClick="onRadioButtonClick"
-   		    android:text="Customized View" />
+   		    android:text="View Between Dates" />
    		<TextView
         android:layout_width="283dp"
         android:layout_height="10px"

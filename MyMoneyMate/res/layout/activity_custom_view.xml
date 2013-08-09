@@ -99,7 +99,7 @@
         android:textSize="22dp"
         android:textColor="#67204e"
         android:textStyle="bold"
-        android:text="Customized View" />
+        android:text="View Between Dates" />
 
     <Spinner
         android:id="@+id/spinner1"
@@ -133,13 +133,7 @@
         android:textColor="#67204e"
         android:text="To" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignTop="@+id/textView3"
-        android:background="@drawable/home" />
+    
 
     <Button
         android:id="@+id/pie_chart_btn"

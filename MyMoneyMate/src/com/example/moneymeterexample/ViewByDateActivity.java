@@ -105,9 +105,9 @@ public class ViewByDateActivity extends Activity implements OnClickListener, and
 		}
 	};
 	private void updateDisplay() {
-		if(mMonth <9){
+		if(mMonth < 9){
 
-			if(mDay < 9){
+			if(mDay <= 9){
 				date.setText(
 						new StringBuilder()
 						// Appending 0 to month and day for the  format YYYY-MM-DD

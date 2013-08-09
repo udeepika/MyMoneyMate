@@ -166,7 +166,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 
 		if(fromMonth <9){
 
-			if(fromDay < 9){
+			if(fromDay <= 9){
 				from_date.setText(
 						new StringBuilder()
 						// Appending 0 to month and day for the  format YYYY-MM-DD
@@ -202,7 +202,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 	private void updateToDisplay() {
 		if(toMonth <9){
 
-			if(toDay < 9){
+			if(toDay <= 9){
 				to_date.setText(
 						new StringBuilder()
 						// Appending 0 to month and day for the  format YYYY-MM-DD
@@ -264,6 +264,7 @@ public class CustomViewActivity extends Activity implements OnClickListener,OnIt
 		.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		category.setAdapter(dataAdapter);
 		category.setPrompt("Choose a category");
+		category.setSelection(category.getAdapter().getCount()-1);
 
 	}
 
