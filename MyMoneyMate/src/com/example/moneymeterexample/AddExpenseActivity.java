@@ -23,7 +23,7 @@
 * 			  http://www.androidhive.info/2012/06/android-populating-spinner-data-from-sqlite-database/
 *             http://developer.android.com/reference/android/content/Intent.html
 *             http://marakana.com/forums/android/examples/65.html
-			
+*			
 ********************************************************************************************************** */
 
 

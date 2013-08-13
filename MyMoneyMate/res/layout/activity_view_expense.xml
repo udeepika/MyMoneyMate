@@ -20,7 +20,7 @@
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
 * References: http://developer.android.com/reference/android/widget/ListView.html#attr_android%3afooterDividersEnabled
-			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
+*			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
 ********************************************************************************************************************* -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

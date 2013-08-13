@@ -20,7 +20,7 @@
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
 * References: http://v4all123.blogspot.com/2013/03/piechart-using-achartengine.html
-
+*
 ***************************************************************************************** -->
 <LinearLayout android:layout_height="fill_parent" 
         android:layout_width="fill_parent" 

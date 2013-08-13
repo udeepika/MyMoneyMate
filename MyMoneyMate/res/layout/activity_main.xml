@@ -20,9 +20,8 @@
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
 * References: http://mobile.tutsplus.com/tutorials/android/android-user-interface-design-basic-font-sizes/
-			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
-			  
-
+*			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic			  
+*
 *********************************************************************************************************-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -50,8 +49,8 @@
         android:layout_gravity="center"
         android:background="@drawable/textbox"
         android:padding="10px"
-        android:text="A smart way to keep track of your personal expenses. Add,view, update and delete your expenses with ease!!!"
-        android:textSize="25px" />
+        android:text="A smart way to keep track of your personal expenses.\nAdd,view, update and delete your expenses with ease!!!"
+        android:textSize="26px" />
 
     <TextView
         android:id="@+id/textView2"

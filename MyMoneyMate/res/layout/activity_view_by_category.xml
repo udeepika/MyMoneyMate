@@ -20,8 +20,8 @@
 * Link to repository- https://github.com/udeepika/MyMoneyMate
 *
 * References: http://mobile.tutsplus.com/tutorials/android/android-user-interface-design-basic-font-sizes/
-			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
-
+*			  http://openclipart.org/detail/7295/big-savings-by-johnny_automatic
+*
 ********************************************************************************************************* -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

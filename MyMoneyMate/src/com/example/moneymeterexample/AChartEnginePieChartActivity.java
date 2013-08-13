@@ -111,7 +111,7 @@ public class AChartEnginePieChartActivity extends Activity {
 		mRenderer.setBackgroundColor(Color.rgb(99, 228, 240));  
 		mRenderer.setChartTitleTextSize(40); 
 		mRenderer.setLabelsTextSize(22);  
-		mRenderer.setLegendTextSize(20); 
+		mRenderer.setLegendTextSize(24); 
 		mRenderer.setLabelsColor(Color.BLACK);
 		mRenderer.setChartTitle("Expenses");
 		mRenderer.setChartTitleTextSize(30);
