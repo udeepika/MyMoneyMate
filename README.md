@@ -71,10 +71,14 @@ https://github.com/udeepika/MyMoneyMate/blob/master/License.txt
 BUILD/INSTALLATION GUIDE
 -------------------------
 1) APK Installation Guide - https://github.com/udeepika/MyMoneyMate/blob/master/APK_Installation_User_Guide.pdf
+
 2) Installation and Build Guide for Developers - https://github.com/udeepika/MyMoneyMate/blob/master/Developer_Docs_Build_guide.pdf
 
 User Manual - https://github.com/udeepika/MyMoneyMate/blob/master/User%20Manual.pdf
 
+APK for Users - https://github.com/udeepika/MyMoneyMate/blob/master/MyMoneyMate.apk
+
+References - https://github.com/udeepika/MyMoneyMate/blob/master/References.xlsx
 
 
 
