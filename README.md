@@ -76,9 +76,10 @@ BUILD/INSTALLATION GUIDE
 
 User Manual - https://github.com/udeepika/MyMoneyMate/blob/master/User%20Manual.pdf
 
-APK for Users - https://github.com/udeepika/MyMoneyMate/blob/master/MyMoneyMate.apk
+APK (binary) for Users - https://github.com/udeepika/MyMoneyMate/blob/master/MyMoneyMate.apk
 
 References - https://github.com/udeepika/MyMoneyMate/blob/master/References.xlsx
 
+Presentation Slides - https://github.com/udeepika/MyMoneyMate/blob/master/MyMoneyMate_Slides.pptx
 
 
